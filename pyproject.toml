@@ -37,7 +37,7 @@ dependencies = [
 
 [project.optional-dependencies]
 inference = ["llama-cpp-python>=0.2.0"]
-training = ["datasets>=2.16.0", "wandb>=0.16.0", "peft>=0.7.0"]
+training = ["datasets>=2.16.0", "wandb>=0.16.0"]
 dev = ["pytest>=7.4.0", "pytest-asyncio>=0.23.0", "pytest-cov>=4.1.0", "ruff>=0.1.0"]
 all = ["syon[inference,training,dev]"]
 
@@ -48,7 +48,9 @@ syon-eval = "eval.runner:main"
 syon-eval-v2 = "evaluation.benchmarks.benchmark_runner:main"
 syon-train = "training.parallel_trainer:main"
 syon-train-v2 = "training.core.trainer:main"
-syon-train-master = "training.master_trainer:main"
+syon-train-syon3 = "training.syon3_trainer:main"
+syon-train-pipeline = "training.pipeline:main"
+syon-train-hf = "training.hf.syon3_hf_trainer:main"
 syon-train-scratch = "training.pretrain:main"
 
 

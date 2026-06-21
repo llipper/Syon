@@ -1,0 +1,81 @@
+# Syon 3 — treino local (único config)
+
+model:
+  from_scratch: true
+  architecture: syon3
+  vocab_size: 8192
+  max_seq_length: 512
+  tokenizer_dir: models/tokenizer/syon3-bpe
+
+pretrain:
+  max_steps: 5000
+  learning_rate: 3.0e-4
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  save_every_steps: 200
+  checkpoint_dir: training/checkpoints/pretrain
+
+training:
+  batch_size: 2
+  gradient_accumulation_steps: 8
+  weight_decay: 0.01
+  save_every_steps: 200
+  max_epochs: 500
+  checkpoint_dir: training/checkpoints
+  mixed_precision: true
+
+data:
+  min_samples: 10000
+  raw_dir: data/raw
+  processed_dir: data/processed
+  curriculum_augment: 3
+  curriculum: data/curriculum/syon3_curriculum.yaml
+  composition: configs/dataset/composition.yaml
+  conversation:
+    aira_parquet: dataset-v3-bucket/portuguese-00000-of-00001.parquet
+    ultrachat_dir: UltrachatBR
+    aira_limit: 50000
+    ultrachat_limit: 100000
+
+loss:
+  security_aware_weight: 0.15
+  contrastive_weight: 0.05
+
+phases:
+  - name: phase1_programming
+    description: "Programação + patterns + multi-linguagem"
+    max_steps: 1000
+    learning_rate: 2.0e-4
+    security_aware_weight: 0.10
+    focus_domains: [programming, complementary]
+    checkpoint_subdir: phase1
+
+  - name: phase2_cybersecurity
+    description: "Cybersecurity — OWASP, STRIDE, compliance"
+    max_steps: 1000
+    learning_rate: 1.0e-4
+    security_aware_weight: 0.30
+    focus_domains: [cybersecurity, training_quality]
+    checkpoint_subdir: phase2
+
+  - name: phase3_architecture
+    description: "Arquitetura distribuída + system design"
+    max_steps: 1000
+    learning_rate: 1.0e-4
+    security_aware_weight: 0.15
+    focus_domains: [complementary, programming, training_quality]
+    checkpoint_subdir: phase3
+
+  - name: phase4_conversation
+    description: "Conversa em português"
+    max_steps: 1000
+    learning_rate: 8.0e-5
+    security_aware_weight: 0.05
+    focus_domains: [conversation]
+    checkpoint_subdir: phase4
+
+output:
+  pretrain_dir: models/pretrained/syon-3-pretrain
+  pretrained_dir: models/pretrained/syon-3
+  summary: training/logs/syon3_summary.json
+  eval_report: training/logs/syon3_eval.json

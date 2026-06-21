@@ -2,7 +2,7 @@
 Pré-treino Syon do ZERO — causal language modeling com pesos aleatórios.
 
 Uso:
-    python -m training.pretrain --config training/configs/syon_scratch_kaggle.yaml
+    python -m training.pretrain --config training/configs/syon3.yaml
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ for p in (ROOT, ROOT / "src"):
     if s not in sys.path:
         sys.path.insert(0, s)
 
-from training.master_trainer import MasterDataset, build_model, collate, load_master_config
+from training.syon3_trainer import Syon3Dataset, build_model, collate, load_syon3_config
 from training.dataset.curator import DatasetCurator
 from training.dataset.composition import load_composition
 
@@ -45,7 +45,7 @@ def run_pretrain(
     max_len = int(config["model"]["max_seq_length"])
 
     loader = DataLoader(
-        MasterDataset(samples, tokenizer, max_len, None),
+        Syon3Dataset(samples, tokenizer, max_len, None),
         batch_size=batch_size,
         shuffle=True,
         collate_fn=collate,
@@ -119,11 +119,11 @@ def run_pretrain(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Syon pretrain do zero")
-    parser.add_argument("--config", type=Path, default=ROOT / "training/configs/syon_scratch_kaggle.yaml")
+    parser.add_argument("--config", type=Path, default=ROOT / "training/configs/syon3.yaml")
     parser.add_argument("--data-dir", type=Path, default=None)
     args = parser.parse_args()
 
-    config = load_master_config(args.config)
+    config = load_syon3_config(args.config)
     data_dir = args.data_dir or Path(config.get("data", {}).get("raw_dir", ROOT / "data/raw"))
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

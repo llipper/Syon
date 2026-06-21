@@ -1,9 +1,8 @@
-# Curriculum Master/Senior — Programação + Cybersecurity + Arquitetura
-# Níveis: junior < mid < senior < master
+# Curriculum Syon 3 — Programação + Cybersecurity + Arquitetura + Conversa
 
 levels:
-  - master
   - senior
+  - advanced
 
 domains:
   programming:
@@ -58,24 +57,30 @@ domains:
       - security_audit_scenarios
 
 phases:
-  phase1_foundation:
-    description: "SFT base — programação sólida + fundamentos segurança"
+  phase1_programming:
+    description: "Programação + fundamentos"
     max_steps: 50000
     learning_rate: 2.0e-5
     focus_domains: [programming, complementary]
 
-  phase2_security_mastery:
-    description: "Especialização cybersecurity senior"
+  phase2_cybersecurity:
+    description: "Cybersecurity"
     max_steps: 25000
     learning_rate: 1.0e-5
     focus_domains: [cybersecurity, training_quality]
     security_aware_weight: 0.25
 
-  phase3_architecture_mastery:
-    description: "Arquitetura de software + system design master"
+  phase3_architecture:
+    description: "Arquitetura de software + system design"
     max_steps: 25000
     learning_rate: 1.0e-5
     focus_domains: [complementary, programming, training_quality]
+
+  phase4_conversation:
+    description: "Conversa em português"
+    max_steps: 25000
+    learning_rate: 8.0e-5
+    focus_domains: [conversation]
 
 format:
   instruction_template: "<|system|>{system}\n<|user|>{user}\n<|assistant|>{assistant}"

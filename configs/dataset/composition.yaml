@@ -1,6 +1,6 @@
 composition:
   programming:
-    weight: 0.40
+    weight: 0.35
     sources:
       - github_repositories
       - stack_overflow_qa
@@ -8,7 +8,7 @@ composition:
       - public_domain_books
       - educational_course_code
   cybersecurity:
-    weight: 0.35
+    weight: 0.30
     sources:
       - cve_cwe_cvss_documents
       - security_research_papers
@@ -18,7 +18,7 @@ composition:
       - sanitized_attack_logs
       - digital_forensics
   complementary:
-    weight: 0.15
+    weight: 0.10
     sources:
       - cryptography_mathematics
       - computer_networks
@@ -32,6 +32,11 @@ composition:
       - anonymized_real_cases
       - human_specialist_validation
       - security_feedback
+  conversation:
+    weight: 0.15
+    sources:
+      - instruct_aira_pt
+      - ultrachat_br
 volume:
   tokens_trained: "[X]"
   unique_samples: "[X]"

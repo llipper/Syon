@@ -37,11 +37,25 @@ class DatasetCurator:
         self._seen_hashes.add(digest)
         return True
 
+    @staticmethod
+    def _turns_to_syon_chat(turns: list[dict]) -> str:
+        role_map = {"user": "<|user|>", "model": "<|assistant|>", "assistant": "<|assistant|>"}
+        parts: list[str] = []
+        for t in turns:
+            role = str(t.get("role", "")).lower()
+            tag = role_map.get(role)
+            content = str(t.get("content", "")).strip()
+            if tag and content:
+                parts.append(f"{tag}{content}")
+        return "".join(parts)
+
     def load_jsonl(self, path: Path, domain: str, source: str) -> Iterator[CuratedSample]:
         with path.open(encoding="utf-8") as handle:
             for line in handle:
                 record = json.loads(line)
                 text = record.get("text", "")
+                if not text and isinstance(record.get("turns"), list):
+                    text = self._turns_to_syon_chat(record["turns"])
                 if not text or not self.deduplicate(text):
                     continue
                 yield CuratedSample(

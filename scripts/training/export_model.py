@@ -30,7 +30,7 @@ def export(source: Path, dest_name: str, models_dir: Path) -> Path:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", type=Path, required=True)
-    parser.add_argument("--name", default="syon-master-lora")
+    parser.add_argument("--name", default="syon-3")
     parser.add_argument("--models-dir", type=Path, default=Path("models"))
     args = parser.parse_args()
     export(args.source, args.name, args.models_dir)

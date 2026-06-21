@@ -1,12 +1,9 @@
 """
-Syon Master Trainer — treino completo em 3 fases:
-  Phase 1: Foundation (programação + fundamentos)
-  Phase 2: Security Mastery (cybersecurity senior)
-  Phase 3: Architecture Mastery (system design + arquitetura)
+Syon 3 Trainer — treino do zero em fases (programação, cybersecurity, arquitetura, conversa).
 
 Uso:
-    python -m training.master_trainer --config training/configs/master_full.yaml
-    python -m training.master_trainer --phase 2 --resume training/checkpoints/phase1/best
+    python -m training.syon3_trainer --config training/configs/syon3.yaml
+    python -m training.syon3_trainer --phase 2 --resume training/checkpoints/phase1/best
 """
 
 from __future__ import annotations
@@ -27,7 +24,6 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 
-from training.core.trainer import Trainer, load_training_config
 from training.dataset.curator import CuratedSample, DatasetCurator
 from training.dataset.composition import load_composition
 from training.losses.security_aware import SecurityAwareLoss
@@ -43,7 +39,7 @@ class PhaseConfig:
     checkpoint_subdir: str
 
 
-class MasterDataset(torch.utils.data.Dataset):
+class Syon3Dataset(torch.utils.data.Dataset):
     def __init__(self, samples: list[CuratedSample], tokenizer, max_length: int, focus_domains: list[str] | None):
         if focus_domains:
             filtered = [s for s in samples if s.domain in focus_domains]
@@ -83,7 +79,7 @@ def _save_checkpoint(model, tokenizer, path: Path) -> None:
         tokenizer.save_pretrained(path)
 
 
-def load_master_config(path: Path) -> dict[str, Any]:
+def load_syon3_config(path: Path) -> dict[str, Any]:
     with path.open(encoding="utf-8") as f:
         return yaml.safe_load(f) or {}
 
@@ -125,61 +121,15 @@ def build_scratch_model(config: dict, data_dir: Path | None = None, resume: Path
         model = Syon3(cfg)
 
     print(
-        f"[Syon/Scratch] {preset} | params={model.num_parameters():,} | "
+        f"[Syon 3] {preset} | params={model.num_parameters():,} | "
         f"vocab={tokenizer.vocab_size} | from_scratch=True"
     )
     return tokenizer, model, max_len
 
 
 def build_model(config: dict, data_dir: Path | None = None, resume: Path | None = None):
-    mc = config.get("model", {})
-    if mc.get("from_scratch", False):
-        return build_scratch_model(config, data_dir=data_dir, resume=resume)
-
-    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
-
-    base = mc.get("base_model", "TinyLlama/TinyLlama-1.1B-Chat-v1.0")
-    max_len = int(mc.get("max_seq_length", 2048))
-    use_lora = mc.get("use_lora", True)
-    use_4bit = mc.get("use_4bit", True)
-
-    tokenizer = AutoTokenizer.from_pretrained(base)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-
-    load_kw: dict = {"device_map": "auto"}
-    if use_4bit and torch.cuda.is_available():
-        try:
-            load_kw["quantization_config"] = BitsAndBytesConfig(
-                load_in_4bit=True,
-                bnb_4bit_compute_dtype=torch.float16,
-                bnb_4bit_use_double_quant=True,
-                bnb_4bit_quant_type="nf4",
-            )
-        except Exception:
-            load_kw["torch_dtype"] = torch.float16
-    else:
-        load_kw["torch_dtype"] = torch.float16
-
-    model = AutoModelForCausalLM.from_pretrained(base, **load_kw)
-
-    if use_lora:
-        from peft import LoraConfig, get_peft_model
-
-        lc = mc.get("lora", {})
-        model = get_peft_model(
-            model,
-            LoraConfig(
-                r=int(lc.get("r", 32)),
-                lora_alpha=int(lc.get("alpha", 64)),
-                lora_dropout=float(lc.get("dropout", 0.05)),
-                target_modules=lc.get("target_modules", ["q_proj", "v_proj", "k_proj", "o_proj"]),
-                task_type="CAUSAL_LM",
-            ),
-        )
-        model.print_trainable_parameters()
-
-    return tokenizer, model, max_len
+    """Syon 3 exclusivamente — arquitetura e pesos proprietários."""
+    return build_scratch_model(config, data_dir=data_dir, resume=resume)
 
 
 def run_phase(
@@ -197,7 +147,7 @@ def run_phase(
     save_every = int(tcfg.get("save_every_steps", 500))
 
     loader = DataLoader(
-        MasterDataset(samples, tokenizer, int(config["model"]["max_seq_length"]), phase.focus_domains),
+        Syon3Dataset(samples, tokenizer, int(config["model"]["max_seq_length"]), phase.focus_domains),
         batch_size=batch_size,
         shuffle=True,
         collate_fn=collate,
@@ -293,59 +243,46 @@ def ensure_curriculum(data_dir: Path, config: dict) -> None:
         try:
             info = json.loads(manifest.read_text(encoding="utf-8"))
             if int(info.get("total_samples", 0)) >= min_samples:
-                print(f"[Syon/Master] Dataset OK: {info['total_samples']} amostras")
+                print(f"[Syon 3] Dataset OK: {info['total_samples']} amostras")
                 return
         except (json.JSONDecodeError, KeyError):
             pass
 
-    print(f"[Syon/Master] Gerando curriculum completo (mín. {min_samples})...")
-    from scripts.data.build_master_curriculum import build
+    print(f"[Syon 3] Gerando curriculum (mín. {min_samples})...")
+    from scripts.data.build_syon3_curriculum import build
 
     build(data_dir, min_samples=min_samples, augment=augment)
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Syon Master Trainer — 3 fases")
-    parser.add_argument("--config", type=Path, default=ROOT / "training/configs/master_full.yaml")
+    parser = argparse.ArgumentParser(description="Syon 3 Trainer")
+    parser.add_argument("--config", type=Path, default=ROOT / "training/configs/syon3.yaml")
     parser.add_argument("--data-dir", type=Path, default=ROOT / "data/raw")
-    parser.add_argument("--phase", type=int, default=0, help="0=todas, 1/2/3=fase específica")
+    parser.add_argument("--phase", type=int, default=0, help="0=todas, 1/2/3/4=fase específica")
     parser.add_argument("--augment", type=int, default=20, help="Fator curriculum se dados ausentes")
     parser.add_argument("--resume", type=Path, default=None)
     args = parser.parse_args()
 
-    config = load_master_config(args.config)
-    data_dir = Path(config.get("data", {}).get("raw_dir", args.data_dir))
-    if str(data_dir).startswith("/kaggle"):
-        data_dir = Path(args.data_dir)
+    config = load_syon3_config(args.config)
+    data_dir = Path(args.data_dir or config.get("data", {}).get("raw_dir", ROOT / "data/raw"))
     ensure_curriculum(data_dir, config)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if device.type == "cpu":
-        print("[Syon/Master] AVISO: sem GPU — treino master requer CUDA")
+        print("[Syon 3] AVISO: sem GPU — treino requer CUDA")
 
-    print(f"[Syon/Master] Device: {device}")
-    from_scratch = config.get("model", {}).get("from_scratch", False)
+    print(f"[Syon 3] Device: {device}")
     resume_path = args.resume if args.resume and args.resume.exists() else None
     tokenizer, model, _ = build_model(config, data_dir=data_dir, resume=resume_path)
     model = model.to(device)
-
-    if resume_path and not from_scratch:
-        try:
-            from peft import PeftModel
-
-            adapter = resume_path / "adapter_config.json"
-            if adapter.exists():
-                base = model.get_base_model() if hasattr(model, "get_base_model") else model
-                model = PeftModel.from_pretrained(base, str(resume_path), is_trainable=True)
-                print(f"[Syon/Master] Resumido de {resume_path}")
-        except Exception as exc:
-            print(f"[Syon/Master] Resume falhou ({exc}), treino do zero na fase")
+    if resume_path:
+        print(f"[Syon 3] Resumido de {resume_path}")
 
     curator = DatasetCurator(data_dir, load_composition())
     samples = curator.curate_all()
-    print(f"[Syon/Master] Dataset: {len(samples)} amostras")
+    print(f"[Syon 3] Dataset: {len(samples)} amostras")
     comp = load_composition()
-    print(f"[Syon/Master] Composição OK: {comp.validate_weights()}")
+    print(f"[Syon 3] Composição OK: {comp.validate_weights()}")
 
     phases_cfg = config.get("phases", [])
     phases = [
@@ -367,18 +304,18 @@ def main() -> None:
         steps = run_phase(model, tokenizer, samples, phase, config, device)
         results["phases"].append({"name": phase.name, "steps": steps})
 
-    out_model = Path(config.get("output", {}).get("pretrained_dir", "models/pretrained/syon-master"))
+    out_model = Path(config.get("output", {}).get("pretrained_dir", "models/pretrained/syon-3"))
     out_model.mkdir(parents=True, exist_ok=True)
     _save_checkpoint(model, tokenizer, out_model)
 
     results["output"] = str(out_model)
     results["total_samples"] = len(samples)
-    log_path = Path(config.get("output", {}).get("summary", "training/logs/master_summary.json"))
+    log_path = Path(config.get("output", {}).get("summary", "training/logs/syon3_summary.json"))
     log_path.parent.mkdir(parents=True, exist_ok=True)
     log_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
 
-    print(f"\n[Syon/Master] Treino completo. Modelo: {out_model}")
-    print(f"[Syon/Master] Resumo: {log_path}")
+    print(f"\n[Syon 3] Treino completo. Modelo: {out_model}")
+    print(f"[Syon 3] Resumo: {log_path}")
 
 
 if __name__ == "__main__":

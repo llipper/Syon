@@ -27,7 +27,7 @@ def process(raw_dir: Path, processed_dir: Path, seed: int = 42) -> dict:
     curator = DatasetCurator(raw_dir, load_composition())
     samples = curator.curate_all()
     if not samples:
-        raise FileNotFoundError(f"Sem dados em {raw_dir}. Rode build_master_curriculum.py primeiro.")
+        raise FileNotFoundError(f"Sem dados em {raw_dir}. Rode build_syon3_curriculum.py primeiro.")
 
     rng = random.Random(seed)
     rng.shuffle(samples)
@@ -46,13 +46,12 @@ def process(raw_dir: Path, processed_dir: Path, seed: int = 42) -> dict:
     for split_name, split_samples in splits.items():
         out_dir = processed_dir / "merged"
         out_dir.mkdir(parents=True, exist_ok=True)
-        path = out_dir / f"full_{split_name}.jsonl" if split_name != "validation" else out_dir / "full_val.jsonl"
         if split_name == "validation":
-            path = processed_dir / "merged" / "full_val.jsonl"
+            path = processed_dir / "merged" / "syon3_val.jsonl"
         elif split_name == "train":
-            path = processed_dir / "merged" / "full_train.jsonl"
+            path = processed_dir / "merged" / "syon3_train.jsonl"
         else:
-            path = processed_dir / "merged" / "full_test.jsonl"
+            path = processed_dir / "merged" / "syon3_test.jsonl"
 
         with path.open("w", encoding="utf-8") as f:
             for s in split_samples:

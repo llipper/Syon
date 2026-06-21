@@ -18,9 +18,9 @@ training_params:
   early_stopping_patience: 5
 
 data_params:
-  train_data_path: data/processed/merged/full_train.jsonl
-  val_data_path: data/processed/merged/full_val.jsonl
-  test_data_path: data/processed/merged/full_test.jsonl
+  train_data_path: data/processed/merged/syon3_train.jsonl
+  val_data_path: data/processed/merged/syon3_val.jsonl
+  test_data_path: data/processed/merged/syon3_test.jsonl
 
 distributed_params:
   world_size: 1

@@ -25,13 +25,16 @@ class Tokenizer:
 
     @classmethod
     def from_pretrained(cls, model_path: str) -> Tokenizer:
-        try:
-            from transformers import AutoTokenizer
+        from pathlib import Path
+        import json
 
-            hf = AutoTokenizer.from_pretrained(model_path)
-            return cls(tokenizer=hf, model_name=model_path)
-        except ImportError as exc:
-            raise InferenceError("transformers não instalado para carregar tokenizer") from exc
+        path = Path(model_path)
+        cfg = path / "config.json"
+        if cfg.exists() and json.loads(cfg.read_text(encoding="utf-8")).get("model_type") == "syon_3":
+            from models.tokenizer.syon_bpe import SyonBPETokenizer
+
+            return cls(tokenizer=SyonBPETokenizer.from_pretrained(path), model_name=model_path)
+        raise InferenceError(f"Tokenizer Syon 3 não encontrado em {model_path}")
 
     def encode(self, text: str, add_special_tokens: bool = True) -> list[int]:
         if self._hf_tokenizer is not None:

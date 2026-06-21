@@ -1,0 +1,44 @@
+# Syon 3 — treino proprietário via Hugging Face (só infraestrutura)
+# HF = Trainer + API datasets (texto). SEM modelos de terceiros.
+
+model:
+  architecture: syon3
+  resume: kl
+  tokenizer_dir: kl
+  max_seq_length: 512
+
+data:
+  conversation_dir: data/raw/conversation
+  raw_dir: data/raw
+  max_conversation_samples: 100000
+  max_reasoning_samples: 50000
+  conversation_weight: 0.6
+  reasoning_domains:
+    - programming
+    - cybersecurity
+    - complementary
+    - training_quality
+  val_ratio: 0.02
+  hf_dataset: nicholasKluge/instruct-aira-dataset-v3
+  hf_split: portuguese
+
+training:
+  output_dir: training/checkpoints/syon3_hf
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 5.0e-5
+  max_steps: 3000
+  warmup_steps: 100
+  weight_decay: 0.01
+  logging_steps: 50
+  save_steps: 200
+  eval_steps: 200
+  save_total_limit: 3
+  fp16: true
+  report_to: none
+  seed: 42
+
+output:
+  model_dir: models/pretrained/syon-3
+  summary: training/logs/syon3_hf.json
+  hub_repo: null

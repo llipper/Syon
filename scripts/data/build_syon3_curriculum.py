@@ -1,15 +1,14 @@
 """
-Pipeline COMPLETO de geração de dataset Master/Senior.
+Geração de dataset para treino Syon 3.
 
 Gera:
   1. Entradas manuais premium (curriculum_entries.py)
-  2. Milhares de amostras procedurais (curriculum_generator.py)
-  3. Augmentação opcional
-  4. Manifest + estatísticas
+  2. Amostras procedurais (curriculum_generator.py)
+  3. Manifest + estatísticas
 
 Uso:
-    python scripts/data/build_master_curriculum.py
-    python scripts/data/build_master_curriculum.py --min-samples 15000
+    python scripts/data/build_syon3_curriculum.py
+    python scripts/data/build_syon3_curriculum.py --min-samples 15000
 """
 
 from __future__ import annotations
@@ -107,15 +106,15 @@ def build(output_dir: Path, min_samples: int = 10000, augment: int = 3) -> dict[
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build Syon Master Curriculum — COMPLETO")
+    parser = argparse.ArgumentParser(description="Build Syon 3 curriculum")
     parser.add_argument("--output", type=Path, default=ROOT / "data/raw")
     parser.add_argument("--min-samples", type=int, default=10000)
     parser.add_argument("--augment", type=int, default=3)
     args = parser.parse_args()
 
-    print(f"[Syon] Pipeline COMPLETO → {args.output} (mínimo {args.min_samples} amostras)")
+    print(f"[Syon 3] Gerando curriculum → {args.output} (mínimo {args.min_samples} amostras)")
     stats = build(args.output, min_samples=args.min_samples, augment=args.augment)
-    print(f"[Syon] ✓ Total: {stats['_total']} amostras geradas")
+    print(f"[Syon 3] Total: {stats['_total']} amostras geradas")
 
 
 if __name__ == "__main__":

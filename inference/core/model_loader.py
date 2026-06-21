@@ -82,24 +82,32 @@ class ModelLoader:
 
     def load_model_safetensors(self) -> LoadedModel:
         try:
+            import json
             import torch
-            from transformers import AutoModelForCausalLM, AutoTokenizer
         except ImportError as exc:
-            raise InferenceError("transformers/torch não instalados") from exc
+            raise InferenceError("torch não instalado") from exc
 
-        path = str(self.model_path)
-        tokenizer = AutoTokenizer.from_pretrained(path)
-        model = AutoModelForCausalLM.from_pretrained(
-            path,
-            torch_dtype=torch.float16,
-            device_map="auto",
-        )
-        return LoadedModel(
-            backend="hf",
-            model=model,
-            tokenizer=tokenizer,
-            model_path=self.model_path,
-            metadata={"dtype": "float16"},
+        path = self.model_path if self.model_path.is_dir() else self.model_path.parent
+        cfg_path = path / "config.json"
+        if cfg_path.exists():
+            cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+            if cfg.get("model_type") == "syon_3":
+                from models.architecture.syon3 import Syon3
+                from models.tokenizer.syon_bpe import SyonBPETokenizer
+
+                device = "cuda" if torch.cuda.is_available() else "cpu"
+                model = Syon3.from_pretrained(path, device=device)
+                tokenizer = SyonBPETokenizer.from_pretrained(path)
+                return LoadedModel(
+                    backend="syon3",
+                    model=model,
+                    tokenizer=tokenizer,
+                    model_path=path,
+                    metadata={"model_type": "syon_3", "parameters": model.num_parameters()},
+                )
+
+        raise InferenceError(
+            f"Modelo não reconhecido em {path}. Use diretório Syon 3 (config.json com model_type=syon_3)."
         )
 
     def load_model_onnx(self) -> LoadedModel:
