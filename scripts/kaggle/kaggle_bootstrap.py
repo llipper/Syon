@@ -53,14 +53,15 @@ def find_project(input_dir: Path) -> Path | None:
 
 
 def find_kl_source(input_dir: Path, project: Path) -> Path | None:
-    searches = [project, input_dir]
+    """Prioriza Kaggle Model (/kaggle/input) depois kl/ do projeto."""
+    project_kl = project / "kl"
+    if project_kl.is_dir() and (project_kl / "tokenizer.json").exists():
+        return project_kl
 
-    for base in searches:
+    for base in (input_dir,):
         direct = base / "kl"
         if direct.is_dir() and (direct / "tokenizer.json").exists():
             return direct
-
-    for base in searches:
         for tok in base.rglob("tokenizer.json"):
             parent = tok.parent
             if (parent / "config.json").exists() and (
@@ -90,6 +91,9 @@ def copy_tree(src: Path, dest: Path) -> None:
 
 
 def copy_kl(src: Path, dest: Path) -> None:
+    if src.resolve() == dest.resolve():
+        print(f"[bootstrap] kl/ já no lugar: {dest}")
+        return
     dest.mkdir(parents=True, exist_ok=True)
     for name in (
         "pytorch_model.bin",
