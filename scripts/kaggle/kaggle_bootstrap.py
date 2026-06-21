@@ -108,27 +108,33 @@ def find_conversation_files(input_dir: Path) -> list[Path]:
     return [p for p in input_dir.rglob("*.jsonl") if p.name in names]
 
 
+def resolve_code_root(project: Path, input_dir: Path) -> Path:
+    """Código: git clone em /kaggle/working/syon OU dataset em /kaggle/input."""
+    if is_full_project(project):
+        print(f"[bootstrap] Código OK (git clone): {project}")
+        return project
+
+    src = find_project(input_dir)
+    if src is not None:
+        print(f"[bootstrap] Código ({_path_kind(src)}): {src}")
+        if src.resolve() != project.resolve():
+            print(f"[bootstrap] Copiando → {project}")
+            copy_tree(src, project)
+        return project
+
+    raise FileNotFoundError(
+        "Código Syon 3 não encontrado.\n"
+        "Rode antes: !git clone https://github.com/llipper/Syon.git /kaggle/working/syon"
+    )
+
+
 def bootstrap(project: Path, input_dir: Path) -> dict:
     report: dict = {"project": str(project), "input": str(input_dir)}
 
-    src = find_project(input_dir)
-    if src is None:
-        raise FileNotFoundError(
-            "Código Syon 3 completo não encontrado.\n\n"
-            "Opção A — Add Data → Dataset com o repo GitHub (pasta com models/ + training/)\n"
-            "Opção B — Célula git clone:\n"
-            "  !git clone https://github.com/llipper/Syon.git /kaggle/working/syon\n\n"
-            "NÃO use só o Kaggle Model como código — ele pode não ter a pasta models/."
-        )
-
-    print(f"[bootstrap] Código ({_path_kind(src)}): {src}")
-    if src.resolve() != project.resolve():
-        print(f"[bootstrap] Copiando → {project}")
-        copy_tree(src, project)
-    else:
-        print(f"[bootstrap] Projeto já em {project}")
+    resolve_code_root(project, input_dir)
 
     kl_dir = project / "kl"
+    # Pesos/tokenizer: Kaggle Model em /kaggle/input (kl/ não vai no GitHub — *.bin no .gitignore)
     kl_src = find_kl_source(input_dir, project)
     if kl_src:
         print(f"[bootstrap] kl/: {kl_src} → {kl_dir}")
