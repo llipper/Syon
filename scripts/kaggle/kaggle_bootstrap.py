@@ -189,6 +189,11 @@ def bootstrap(project: Path, input_dir: Path) -> dict:
         print(f"[bootstrap] Arquivos .bin em /kaggle/input: {len(bins)}")
         for b in bins[:5]:
             print(f"  - {b}")
+        if model_ckpt is not None:
+            present = sorted(p.name for p in model_ckpt.iterdir() if p.is_file())
+            print(f"[bootstrap] Model Kaggle tem só: {present}")
+        print("[bootstrap] Republicar Model com kl/pytorch_model.bin (~61 MB)")
+        print("[bootstrap] Local: python scripts/kaggle/package_syon3_model.py")
         print("[bootstrap] Treino usará pesos aleatórios se não achar pesos")
 
     conv_dir = project / "data" / "raw" / "conversation"
