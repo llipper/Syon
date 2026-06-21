@@ -52,24 +52,50 @@ def find_project(input_dir: Path) -> Path | None:
     return max(candidates, key=rank)
 
 
-def find_kl_source(input_dir: Path, project: Path) -> Path | None:
-    """Prioriza Kaggle Model (/kaggle/input) depois kl/ do projeto."""
-    project_kl = project / "kl"
-    if project_kl.is_dir() and (project_kl / "tokenizer.json").exists():
-        return project_kl
+KL_FILES = (
+    "pytorch_model.bin",
+    "config.json",
+    "tokenizer.json",
+    "syon_model.json",
+    "model.safetensors",
+)
 
-    for base in (input_dir,):
-        direct = base / "kl"
-        if direct.is_dir() and (direct / "tokenizer.json").exists():
-            return direct
-        for tok in base.rglob("tokenizer.json"):
-            parent = tok.parent
-            if (parent / "config.json").exists() and (
-                (parent / "pytorch_model.bin").exists() or parent.name == "kl"
-            ):
-                return parent
 
-    return None
+def _version_key(path: Path) -> int:
+    for part in reversed(path.parts):
+        if part.isdigit():
+            return int(part)
+    return 0
+
+
+def find_checkpoints(base: Path) -> list[Path]:
+    if not base.exists():
+        return []
+    found: list[Path] = []
+    seen: set[Path] = set()
+    for marker in ("pytorch_model.bin", "tokenizer.json", "model.safetensors"):
+        for f in base.rglob(marker):
+            parent = f.parent
+            if parent in seen:
+                continue
+            if (parent / "config.json").exists() or marker == "tokenizer.json":
+                seen.add(parent)
+                found.append(parent)
+    return found
+
+
+def find_best_checkpoint(input_dir: Path) -> Path | None:
+    """Busca pesos no Kaggle Model (/kaggle/input/models/...)."""
+    candidates = find_checkpoints(input_dir)
+    if not candidates:
+        return None
+
+    def rank(p: Path) -> tuple[int, int, int]:
+        has_bin = 1 if (p / "pytorch_model.bin").exists() else 0
+        in_models = 1 if "/kaggle/input/models/" in str(p).replace("\\", "/") else 0
+        return (has_bin, in_models, _version_key(p))
+
+    return max(candidates, key=rank)
 
 
 def copy_tree(src: Path, dest: Path) -> None:
@@ -90,21 +116,26 @@ def copy_tree(src: Path, dest: Path) -> None:
     )
 
 
-def copy_kl(src: Path, dest: Path) -> None:
-    if src.resolve() == dest.resolve():
-        print(f"[bootstrap] kl/ já no lugar: {dest}")
-        return
-    dest.mkdir(parents=True, exist_ok=True)
-    for name in (
-        "pytorch_model.bin",
-        "config.json",
-        "tokenizer.json",
-        "syon_model.json",
-        "model.safetensors",
-    ):
-        f = src / name
-        if f.exists():
-            shutil.copy2(f, dest / name)
+def merge_into_kl(kl_dir: Path, *sources: Path | None) -> list[str]:
+    """Mescla tokenizer/pesos de várias fontes em project/kl/."""
+    kl_dir.mkdir(parents=True, exist_ok=True)
+    used: list[str] = []
+
+    for src in sources:
+        if src is None or not src.exists():
+            continue
+        if src.resolve() == kl_dir.resolve():
+            used.append(str(src))
+            print(f"[bootstrap] kl/ local: {kl_dir}")
+            continue
+        print(f"[bootstrap] Mesclando → kl/: {src}")
+        used.append(str(src))
+        for name in KL_FILES:
+            f = src / name
+            if f.exists():
+                shutil.copy2(f, kl_dir / name)
+
+    return used
 
 
 def find_conversation_files(input_dir: Path) -> list[Path]:
@@ -138,24 +169,27 @@ def bootstrap(project: Path, input_dir: Path) -> dict:
     resolve_code_root(project, input_dir)
 
     kl_dir = project / "kl"
-    # Pesos/tokenizer: Kaggle Model em /kaggle/input (kl/ não vai no GitHub — *.bin no .gitignore)
-    kl_src = find_kl_source(input_dir, project)
-    if kl_src:
-        print(f"[bootstrap] kl/: {kl_src} → {kl_dir}")
-        copy_kl(kl_src, kl_dir)
-        report["kl_source"] = str(kl_src)
-    elif (kl_dir / "tokenizer.json").exists():
-        print(f"[bootstrap] kl/ já presente em {kl_dir}")
-    else:
+    model_ckpt = find_best_checkpoint(input_dir)
+    project_kl = kl_dir if (kl_dir / "tokenizer.json").exists() else None
+    # Model Kaggle primeiro (pesos), depois kl/ residual do working
+    sources = merge_into_kl(kl_dir, model_ckpt, project_kl)
+    report["kl_sources"] = sources
+
+    if not (kl_dir / "tokenizer.json").exists():
         raise FileNotFoundError(
             "tokenizer.json não encontrado.\n"
-            "Add Data → Model regyfelipe/syon-3-v1 (ou pasta kl/ com tokenizer + pesos)"
+            "Add Data → Model regyfelipe/syon-3-v1 (deve ter pytorch_model.bin + tokenizer.json)"
         )
 
     has_weights = (kl_dir / "pytorch_model.bin").exists()
     report["has_weights"] = has_weights
     if not has_weights:
-        print("[bootstrap] AVISO: sem pytorch_model.bin — treino inicia pesos aleatórios")
+        bins = list(input_dir.rglob("pytorch_model.bin")) if input_dir.exists() else []
+        print("[bootstrap] AVISO: sem pytorch_model.bin no kl/")
+        print(f"[bootstrap] Arquivos .bin em /kaggle/input: {len(bins)}")
+        for b in bins[:5]:
+            print(f"  - {b}")
+        print("[bootstrap] Treino usará pesos aleatórios se não achar pesos")
 
     conv_dir = project / "data" / "raw" / "conversation"
     conv_dir.mkdir(parents=True, exist_ok=True)
