@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: syon-training-job
+  namespace: syon
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: trainer
+          image: syon:training-latest
+          command: ["python", "-m", "training.core.trainer"]
+          args: ["--config", "training/configs/7b_config.yaml"]
+          resources:
+            limits:
+              nvidia.com/gpu: 8
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: checkpoints
+              mountPath: /checkpoints
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: syon-data-pvc
+        - name: checkpoints
+          persistentVolumeClaim:
+            claimName: syon-checkpoints-pvc

@@ -1,0 +1,36 @@
+model_params:
+  hidden_size: 4096
+  num_layers: 32
+  num_heads: 32
+  vocab_size: 32000
+  max_seq_length: 4096
+
+training_params:
+  batch_size: 8
+  learning_rate: 2.0e-5
+  num_epochs: 3
+  max_steps: 100000
+  warmup_steps: 2000
+  gradient_accumulation_steps: 4
+  mixed_precision: true
+  save_every_steps: 1000
+  eval_every_steps: 500
+  early_stopping_patience: 5
+
+data_params:
+  train_data_path: data/processed/merged/full_train.jsonl
+  val_data_path: data/processed/merged/full_val.jsonl
+  test_data_path: data/processed/merged/full_test.jsonl
+
+distributed_params:
+  world_size: 1
+  rank: 0
+  local_rank: 0
+  backend: nccl
+
+loss:
+  security_aware_weight: 0.15
+  contrastive_weight: 0.1
+
+checkpoint_dir: training/checkpoints
+log_dir: training/logs

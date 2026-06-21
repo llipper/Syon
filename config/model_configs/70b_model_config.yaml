@@ -1,0 +1,24 @@
+name: syon-70b
+version: "1.0.0-beta"
+extends: base_model_config.yaml
+architecture:
+  parameters_billions: 70
+  hidden_size: 8192
+  num_hidden_layers: 80
+  num_attention_heads: 64
+  context_window: 8192
+  quantization: fp16
+training:
+  learning_rate: 1.0e-4
+  warmup_steps: 5000
+  max_seq_length: 4096
+  batch_size: 4
+  gradient_accumulation: 16
+distributed:
+  tensor_parallel_size: 8
+  pipeline_parallel_size: 2
+distribution:
+  gguf: syon-70b.gguf
+  gguf_size_gb: 40.0
+  fp16: syon-70b-fp16.bin
+  fp16_size_gb: 140

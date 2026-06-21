@@ -1,0 +1,21 @@
+# Configuração para modelo Syon 13B
+extends: base_config.yaml
+
+model_params:
+  hidden_size: 5120
+  num_layers: 40
+  num_heads: 40
+  vocab_size: 32000
+  max_seq_length: 8192
+  num_parameters: 13_000_000_000
+
+training_params:
+  batch_size: 2
+  learning_rate: 1.5e-5
+  gradient_accumulation_steps: 16
+  max_steps: 300000
+  mixed_precision: true
+
+distributed_params:
+  world_size: 4
+  backend: nccl

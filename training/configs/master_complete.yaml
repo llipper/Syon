@@ -1,0 +1,71 @@
+# ═══════════════════════════════════════════════════════════
+# SYON MASTER COMPLETE — Configuração unificada de produção
+# Programação + Cybersecurity + Arquitetura (Senior/Master)
+# ═══════════════════════════════════════════════════════════
+
+model:
+  base_model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+  # Produção GPU 24GB+: meta-llama/Llama-2-7b-hf ou syon-7b
+  max_seq_length: 1024
+  use_lora: true
+  use_4bit: true
+  lora:
+    r: 64
+    alpha: 128
+    dropout: 0.05
+    target_modules: [q_proj, v_proj, k_proj, o_proj, gate_proj, up_proj, down_proj]
+
+training:
+  batch_size: 2
+  gradient_accumulation_steps: 8
+  weight_decay: 0.01
+  save_every_steps: 200
+  max_epochs: 500
+  checkpoint_dir: training/checkpoints
+  mixed_precision: true
+
+data:
+  min_samples: 10000
+  raw_dir: data/raw
+  processed_dir: data/processed
+  curriculum_augment: 3
+
+loss:
+  security_aware_weight: 0.15
+  contrastive_weight: 0.05
+
+phases:
+  - name: phase1_foundation
+    description: "Programação senior + patterns + multi-linguagem"
+    max_steps: 1000
+    learning_rate: 2.0e-4
+    security_aware_weight: 0.10
+    focus_domains: [programming, complementary]
+    checkpoint_subdir: phase1
+
+  - name: phase2_security_mastery
+    description: "Cybersecurity master — OWASP, STRIDE, compliance, forense"
+    max_steps: 1000
+    learning_rate: 1.0e-4
+    security_aware_weight: 0.30
+    focus_domains: [cybersecurity, training_quality]
+    checkpoint_subdir: phase2
+
+  - name: phase3_architecture_mastery
+    description: "Arquitetura distribuída + system design + SRE/GitOps"
+    max_steps: 1000
+    learning_rate: 1.0e-4
+    security_aware_weight: 0.15
+    focus_domains: [complementary, programming, training_quality]
+    checkpoint_subdir: phase3
+
+output:
+  pretrained_dir: models/pretrained/syon-master-lora
+  summary: training/logs/master_summary.json
+  eval_report: training/logs/master_eval.json
+
+# Escala para produção real (descomente e ajuste hardware):
+# phases_production:
+#   phase1: { max_steps: 50000 }
+#   phase2: { max_steps: 25000 }
+#   phase3: { max_steps: 25000 }

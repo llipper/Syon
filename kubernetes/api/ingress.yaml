@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: syon-api-ingress
+  namespace: syon
+spec:
+  rules:
+    - host: api.syon.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: syon-api
+                port:
+                  number: 80

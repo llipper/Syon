@@ -1,0 +1,20 @@
+{
+  "code_sample": {
+    "required": ["text", "language", "source"],
+    "properties": {
+      "text": {"type": "string", "minLength": 1},
+      "language": {"type": "string"},
+      "source": {"type": "string"},
+      "metadata": {"type": "object"}
+    }
+  },
+  "security_sample": {
+    "required": ["text", "domain", "source"],
+    "properties": {
+      "text": {"type": "string"},
+      "domain": {"type": "string"},
+      "cwe": {"type": "string"},
+      "severity": {"type": "string"}
+    }
+  }
+}

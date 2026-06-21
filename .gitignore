@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# Model weights
+*.gguf
+*.bin
+*.safetensors
+models/
+checkpoints/
+
+# Training artifacts
+wandb/
+runs/
+logs/
+*.pt
+*.pth
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+*.key
+
+# Test & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Data (large datasets)
+data/raw/
+data/processed/
+data/gemma_sft/
+data/gemma_sft_test/
+UltrachatBR/
+dataset-v3-bucket/
+dist/
+terminals/
+*.parquet
+*.arrow

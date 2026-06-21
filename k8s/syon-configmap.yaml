@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: syon-config
+data:
+  SYON_API_HOST: "0.0.0.0"
+  SYON_API_PORT: "8000"
+  SYON_MODELS_DIR: "/models"
+  SYON_CORS_ORIGINS: "*"

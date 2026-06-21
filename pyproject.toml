@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "syon"
+version = "1.0.0b0"
+description = "LLM especializado em programação e cybersegurança"
+readme = "README.md"
+license = { text = "Syon Research License" }
+requires-python = ">=3.10"
+authors = [{ name = "Syon AI Team", email = "contact@syon.ai" }]
+keywords = ["llm", "cybersecurity", "programming", "security"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Security",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "pyyaml>=6.0.1",
+    "httpx>=0.26.0",
+    "numpy>=1.26.0",
+    "torch>=2.1.0",
+    "transformers>=4.36.0",
+    "accelerate>=0.25.0",
+    "safetensors>=0.4.0",
+    "tiktoken>=0.5.0",
+]
+
+[project.optional-dependencies]
+inference = ["llama-cpp-python>=0.2.0"]
+training = ["datasets>=2.16.0", "wandb>=0.16.0", "peft>=0.7.0"]
+dev = ["pytest>=7.4.0", "pytest-asyncio>=0.23.0", "pytest-cov>=4.1.0", "ruff>=0.1.0"]
+all = ["syon[inference,training,dev]"]
+
+[project.scripts]
+syon-api = "syon.api.main:run_server"
+syon-api-v2 = "api.rest.app:run_server"
+syon-eval = "eval.runner:main"
+syon-eval-v2 = "evaluation.benchmarks.benchmark_runner:main"
+syon-train = "training.parallel_trainer:main"
+syon-train-v2 = "training.core.trainer:main"
+syon-train-master = "training.master_trainer:main"
+syon-train-scratch = "training.pretrain:main"
+
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+include = ["syon*", "api*", "training*", "models*", "eval*", "evaluation*", "inference*", "security*", "config*", "utils*"]
+
+[tool.setuptools.package-data]
+syon = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

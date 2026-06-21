@@ -1,0 +1,64 @@
+version: 1
+disable_existing_loggers: false
+formatters:
+  standard:
+    format: "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+  detailed:
+    format: "%(asctime)s | %(levelname)-8s | %(name)s | %(filename)s:%(lineno)d | %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+  json:
+    format: '{"time":"%(asctime)s","level":"%(levelname)s","logger":"%(name)s","message":"%(message)s"}'
+    datefmt: "%Y-%m-%dT%H:%M:%S"
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: standard
+    stream: ext://sys.stdout
+  file:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: detailed
+    filename: logs/syon.log
+    maxBytes: 10485760
+    backupCount: 5
+    encoding: utf-8
+  error_file:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: detailed
+    filename: logs/syon_errors.log
+    maxBytes: 10485760
+    backupCount: 3
+    encoding: utf-8
+loggers:
+  syon:
+    level: INFO
+    handlers:
+      - console
+      - file
+    propagate: false
+  training:
+    level: INFO
+    handlers:
+      - console
+      - file
+    propagate: false
+  inference:
+    level: INFO
+    handlers:
+      - console
+      - file
+    propagate: false
+  api:
+    level: INFO
+    handlers:
+      - console
+      - file
+      - error_file
+    propagate: false
+root:
+  level: INFO
+  handlers:
+    - console

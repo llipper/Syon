@@ -1,0 +1,36 @@
+services:
+  syon-7b:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: syon:7b-latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../models:/models
+    environment:
+      - SYON_API_KEY=${SYON_API_KEY:-}
+      - SYON_MODELS_DIR=/models
+    command: ["--model", "/models/syon-7b.gguf", "--api-port", "8000"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  syon-13b:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: syon:13b-latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - ../models:/models
+    environment:
+      - SYON_API_KEY=${SYON_API_KEY:-}
+      - SYON_MODELS_DIR=/models
+    command: ["--model", "/models/syon-13b.gguf", "--api-port", "8000"]
+    profiles: ["13b"]

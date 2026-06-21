@@ -1,0 +1,22 @@
+{
+  "experiments": [
+    {
+      "id": "exp_001_baseline",
+      "name": "Baseline Parallel SFT",
+      "status": "completed",
+      "config": "training/configs/base_config.yaml"
+    },
+    {
+      "id": "exp_002_with_augmentation",
+      "name": "With Data Augmentation",
+      "status": "planned",
+      "config": "training/configs/base_config.yaml"
+    },
+    {
+      "id": "exp_003_security_weights",
+      "name": "Security-Aware Loss Weight Tuning",
+      "status": "planned",
+      "config": "training/configs/parallel_config.yaml"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "output": "C:\\Users\\Duck Cipher\\Documents\\Syon\\data\\raw",
+  "total_samples": 10000,
+  "min_samples_target": 10000,
+  "stats": {
+    "programming/github_repositories": 3970,
+    "programming/stack_overflow_qa": 869,
+    "programming/official_documentation": 1,
+    "programming/public_domain_books": 1,
+    "programming/educational_course_code": 249,
+    "cybersecurity/cve_cwe_cvss_documents": 435,
+    "cybersecurity/security_research_papers": 435,
+    "cybersecurity/vulnerability_reports": 435,
+    "cybersecurity/owasp_top_10": 869,
+    "cybersecurity/compliance_manuals": 435,
+    "cybersecurity/sanitized_attack_logs": 869,
+    "cybersecurity/digital_forensics": 612,
+    "complementary/cryptography_mathematics": 151,
+    "complementary/computer_networks": 31,
+    "complementary/operating_systems": 1,
+    "complementary/software_architecture": 332,
+    "complementary/devops_cloud": 61,
+    "training_quality/synthetic_ia_generated": 241,
+    "training_quality/anonymized_real_cases": 1,
+    "training_quality/human_specialist_validation": 1,
+    "training_quality/security_feedback": 1,
+    "_total": 10000
+  },
+  "domains": [
+    "programming",
+    "cybersecurity",
+    "complementary",
+    "training_quality"
+  ]
+}

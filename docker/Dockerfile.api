@@ -1,0 +1,14 @@
+FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt pyproject.toml README.md LICENSE ./
+COPY api/ ./api/
+COPY config/ ./config/
+COPY utils/ ./utils/
+COPY security/ ./security/
+COPY inference/ ./inference/
+COPY src/ ./src/
+RUN pip install --no-cache-dir -e .
+ENV SYON_API_HOST=0.0.0.0
+ENV SYON_API_PORT=8000
+EXPOSE 8000
+CMD ["syon-api-v2"]

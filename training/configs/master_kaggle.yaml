@@ -1,0 +1,46 @@
+# Master training reduzido para Kaggle T4 (validar pipeline antes de GPU dedicada)
+extends_concept: master_full.yaml
+
+model:
+  base_model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+  max_seq_length: 1024
+  use_lora: true
+  use_4bit: true
+  lora:
+    r: 32
+    alpha: 64
+    dropout: 0.05
+    target_modules: [q_proj, v_proj, k_proj, o_proj]
+
+training:
+  batch_size: 2
+  gradient_accumulation_steps: 8
+  save_every_steps: 100
+  max_epochs: 50
+  checkpoint_dir: /kaggle/working/syon/training/checkpoints
+
+phases:
+  - name: phase1_foundation
+    max_steps: 200
+    learning_rate: 2.0e-4
+    security_aware_weight: 0.10
+    focus_domains: [programming, complementary]
+    checkpoint_subdir: phase1
+
+  - name: phase2_security_mastery
+    max_steps: 200
+    learning_rate: 1.0e-4
+    security_aware_weight: 0.25
+    focus_domains: [cybersecurity, training_quality]
+    checkpoint_subdir: phase2
+
+  - name: phase3_architecture_mastery
+    max_steps: 200
+    learning_rate: 1.0e-4
+    security_aware_weight: 0.15
+    focus_domains: [complementary, programming, training_quality]
+    checkpoint_subdir: phase3
+
+output:
+  pretrained_dir: /kaggle/working/syon-output/syon-master-lora
+  summary: /kaggle/working/syon-output/master_summary.json

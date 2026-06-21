@@ -1,0 +1,24 @@
+environment: production
+debug: false
+log_level: WARNING
+api_workers: 8
+reload: false
+cors_origins:
+  - https://api.syon.ai
+inference:
+  device: cuda
+  batch_size: 16
+  use_quantization: true
+  use_flash_attention: true
+training:
+  batch_size: 32
+  gradient_accumulation: 8
+  checkpoint_interval: 2000
+monitoring:
+  enable_prometheus: true
+  enable_wandb: false
+  enable_datadog: true
+security:
+  enable_input_sanitization: true
+  rate_limit_per_minute: 60
+  require_api_key: true

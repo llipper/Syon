@@ -1,0 +1,22 @@
+default:
+  requests_per_minute: 60
+  burst: 10
+
+tiers:
+  free:
+    requests_per_minute: 20
+    burst: 5
+  pro:
+    requests_per_minute: 120
+    burst: 20
+  enterprise:
+    requests_per_minute: 1000
+    burst: 100
+
+endpoints:
+  "/v1/completions":
+    requests_per_minute: 30
+  "/v1/chat/completions":
+    requests_per_minute: 30
+  "/v1/security-analysis":
+    requests_per_minute: 20

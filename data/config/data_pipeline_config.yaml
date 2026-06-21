@@ -1,0 +1,15 @@
+pipeline:
+  raw_path: data/raw
+  processed_path: data/processed
+  validation_path: data/validation
+  cache_path: data/cache
+  splits:
+    train: 0.8
+    validation: 0.1
+    test: 0.1
+processing:
+  deduplicate: true
+  min_tokens: 16
+  max_tokens: 8192
+  pii_redaction: true
+  profanity_filter: true

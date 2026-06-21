@@ -1,0 +1,36 @@
+pipeline:
+  name: syon_data_pipeline
+  version: "1.0"
+  input_format: jsonl
+  output_format: jsonl
+  encoding: utf-8
+paths:
+  raw: data/raw
+  processed: data/processed
+  cache: data/cache
+  validation: data/validation
+processing:
+  min_code_length: 10
+  max_code_length: 65536
+  remove_duplicates: true
+  dedup_hash_algorithm: sha256
+  normalize_whitespace: true
+  strip_comments: false
+  language_detection: true
+quality:
+  min_quality_score: 0.6
+  profanity_filter: true
+  pii_detection: true
+  security_redaction: true
+  max_duplicate_ratio: 0.05
+tokenization:
+  tokenizer: syon_tokenizer
+  max_seq_length: 4096
+  truncation: longest_first
+  padding: max_length
+output:
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+  shuffle_seed: 42
+  write_statistics: true

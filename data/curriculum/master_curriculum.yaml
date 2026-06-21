@@ -1,0 +1,83 @@
+# Curriculum Master/Senior — Programação + Cybersecurity + Arquitetura
+# Níveis: junior < mid < senior < master
+
+levels:
+  - master
+  - senior
+
+domains:
+  programming:
+    weight: 0.40
+    topics:
+      - system_design_patterns
+      - distributed_systems
+      - concurrency_parallelism
+      - api_design_rest_graphql
+      - refactoring_legacy
+      - performance_optimization
+      - multi_language_patterns
+      - testing_tdd_property
+    languages:
+      - python
+      - rust
+      - go
+      - typescript
+      - java
+      - cpp
+
+  cybersecurity:
+    weight: 0.35
+    topics:
+      - threat_modeling_stride
+      - owasp_asvs
+      - sast_dast_methodology
+      - incident_response_nist
+      - cryptography_applied
+      - zero_trust_architecture
+      - cloud_security_cspm
+      - malware_analysis_defensive
+      - compliance_gdpr_hipaa_pci
+      - red_team_blue_team_concepts
+
+  complementary:
+    weight: 0.15
+    topics:
+      - software_architecture_styles
+      - microservices_event_driven
+      - cap_brewer_distributed
+      - devops_gitops_sre
+      - observability_sre
+      - data_engineering_pipelines
+
+  training_quality:
+    weight: 0.10
+    topics:
+      - instruction_following
+      - code_review_senior
+      - architecture_review
+      - security_audit_scenarios
+
+phases:
+  phase1_foundation:
+    description: "SFT base — programação sólida + fundamentos segurança"
+    max_steps: 50000
+    learning_rate: 2.0e-5
+    focus_domains: [programming, complementary]
+
+  phase2_security_mastery:
+    description: "Especialização cybersecurity senior"
+    max_steps: 25000
+    learning_rate: 1.0e-5
+    focus_domains: [cybersecurity, training_quality]
+    security_aware_weight: 0.25
+
+  phase3_architecture_mastery:
+    description: "Arquitetura de software + system design master"
+    max_steps: 25000
+    learning_rate: 1.0e-5
+    focus_domains: [complementary, programming, training_quality]
+
+format:
+  instruction_template: "<|system|>{system}\n<|user|>{user}\n<|assistant|>{assistant}"
+  min_tokens: 128
+  max_tokens: 4096

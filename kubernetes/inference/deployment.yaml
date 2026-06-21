@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syon-inference
+  namespace: syon
+  labels:
+    app: syon
+    component: inference
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: syon
+      component: inference
+  template:
+    metadata:
+      labels:
+        app: syon
+        component: inference
+    spec:
+      containers:
+        - name: syon-inference
+          image: syon:inference-latest
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+              memory: 16Gi
+          volumeMounts:
+            - name: models
+              mountPath: /models
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: syon-models-pvc

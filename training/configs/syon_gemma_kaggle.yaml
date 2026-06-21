@@ -1,0 +1,35 @@
+# Syon especializado em Gemma 2 (QLoRA) — Kaggle T4
+model_params:
+  # Caminho local preenchido em runtime (/kaggle/input/models/...)
+  base_model: /kaggle/input/models/google/gemma-2/pytorch/2b-it/2
+  max_seq_length: 512
+  use_lora: true
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  lora_target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+training_params:
+  batch_size: 1
+  learning_rate: 2.0e-4
+  max_steps: 200
+  warmup_steps: 20
+  gradient_accumulation_steps: 8
+  save_every_steps: 50
+  num_epochs: 20
+
+data_params:
+  data_dir: /kaggle/working/syon/data/raw
+  min_samples: 5000
+
+loss:
+  security_aware_weight: 0.10
+
+output_dir: /kaggle/working/syon-output/syon-gemma-lora

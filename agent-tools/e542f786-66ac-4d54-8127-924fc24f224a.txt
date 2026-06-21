@@ -1,0 +1,599 @@
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'ARQUITETURA.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'LICENSE', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/auth/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/auth/api_keys.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/auth/jwt_handler.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/configs/api_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/configs/auth_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/configs/rate_limit_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/openapi/openapi.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/app.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/middleware/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/middleware/auth.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/middleware/error_handling.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/middleware/logging.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/middleware/rate_limiting.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/routes/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/routes/analysis.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/routes/chat.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/routes/completions.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/routes/health.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/routes/models.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/routes/security.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/rest/utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/websocket/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'api/websocket/ws_handler.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/constants.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/data_configs/data_processing.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/data_configs/sampling_strategy.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/environments/development.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/environments/kaggle.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/environments/production.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/environments/staging.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/inference_configs/low_latency.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/inference_configs/realtime_inference.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/logging/logging_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/model_configs/13b_model_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/model_configs/70b_model_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/model_configs/7b_model_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/model_configs/base_model_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/model_configs/syon3.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/secrets/.env.example', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/secrets/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/secrets/secrets_manager.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/settings.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/training_configs/default_training.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'config/training_configs/fast_training.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'configs/dataset/composition.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'configs/inference/default.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'configs/model/syon-13b.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'configs/model/syon-70b.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'configs/model/syon-7b.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'configs/training/parallel_sft.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'data/config/data_pipeline_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'data/config/data_splits.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'data/config/dataset_manifest.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'data/config/sampling_weights.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'data/curriculum/master_curriculum.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'data/validation/data_quality_rules.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'data/validation/schema_definitions.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docker/.dockerignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docker/Dockerfile', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docker/Dockerfile.api', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docker/Dockerfile.inference', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docker/Dockerfile.training', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docker/docker-compose.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docker/docker-compose.yml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docker/entrypoint.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docker/healthcheck.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eval/benchmarks/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eval/benchmarks/code2seq.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eval/benchmarks/cwe.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eval/benchmarks/humaneval.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eval/benchmarks/mbpp.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eval/benchmarks/owasp.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eval/metrics/latency.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eval/runner.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/benchmarks/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/benchmarks/benchmark_runner.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/benchmarks/code_benchmarks/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/benchmarks/code_benchmarks/humaneval.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/benchmarks/code_benchmarks/mbpp.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/benchmarks/security_benchmarks/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/benchmarks/security_benchmarks/cwe_detection.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/benchmarks/security_benchmarks/vulnerability_analysis.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/datasets/humaneval/problems.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/metrics/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/metrics/code_metrics.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/metrics/language_metrics.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/metrics/security_metrics.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/security_tests/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/security_tests/adversarial/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evaluation/security_tests/adversarial/prompt_injection.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'experiments/experiment_tracker.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/configs/inference_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/configs/server_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/core/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/core/generation.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/core/inference_engine.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/core/model_loader.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/core/post_processing.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/core/tokenization.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/examples/basic_inference.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/examples/security_analysis.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/hardware/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/hardware/cpu.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/hardware/gpu.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/monitoring/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/monitoring/health_check.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/monitoring/metrics.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/optimization/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/optimization/attention_optimization.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/optimization/caching.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/optimization/quantization.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/servers/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/servers/fastapi_server.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/servers/flask_server.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'inference/servers/grpc_server.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'k8s/syon-configmap.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'k8s/syon-deployment.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'k8s/syon-secrets.yaml.example', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'k8s/syon-service.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kl/config.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kl/syon_model.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kubernetes/api/deployment.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kubernetes/api/hpa.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kubernetes/api/ingress.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kubernetes/api/service.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kubernetes/configmap.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kubernetes/inference/deployment.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kubernetes/inference/pvc.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kubernetes/namespace.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kubernetes/secrets.yaml.example', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'kubernetes/training/job.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'notebooks/kaggle_gemma_full.ipynb', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'notebooks/kaggle_master_complete.ipynb', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'notebooks/kaggle_train_syon.ipynb', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'pyproject.toml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'requirements.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/data/build_gemma_sft_dataset.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/data/build_master_curriculum.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/data/curriculum_entries.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/data/curriculum_generator.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/data/import_conversation_datasets.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/data/import_external_datasets.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/data/process_pipeline.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/data/train_syon_tokenizer.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/deployment/deploy_kubernetes.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/development/run_tests.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/development/scaffold_arquitetura.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/download_model.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/download_model.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/kaggle_gemma_full_train.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/kaggle_gemma_train.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/kaggle_master_train.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/kaggle_train.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/load_syon3_inference.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/package_kaggle_data.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/package_kaggle_model.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/prepare_dataset.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/run_complete_kaggle.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/run_gemma_full_kaggle.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/run_scratch_kaggle.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/setup_project.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/kaggle/upload_kaggle_model.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/run_api.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/run_api.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/run_eval.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/run_eval.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/run_training.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/run_training.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/setup/download_models.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/setup/install_dependencies.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/training/export_model.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/training/run_complete.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/training/run_complete.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/training/run_gemma_full.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/training/run_master_training.ps1', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/training/run_master_training.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/access_control/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/access_control/audit_log.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/access_control/rbac.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/compliance/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/compliance/gdpr.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/compliance/hipaa.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/input_validation/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/input_validation/injection_detection.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/input_validation/sanitizer.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/output_filtering/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/output_filtering/content_filter.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/output_filtering/hallucination_detection.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/policy/security_policy.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/vulnerability_scanning/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'security/vulnerability_scanning/sast.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/api/dependencies.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/api/main.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/api/middleware/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/api/middleware/auth.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/api/routes/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/api/routes/chat.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/api/routes/completions.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/api/routes/security.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/api/schemas.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/chat.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/code/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/code/generator.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/code/languages.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/config.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/exceptions.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/inference/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/inference/engine.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/model.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/security/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/security/analyzer.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/syon/security/guardrails.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/conftest.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/coverage.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/fixtures/test_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/integration/test_api_v2.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_api.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_functional.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_guardrails.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_languages.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_reliability.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_security.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_security_analyzer.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_syon3.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_training_losses.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_config_settings.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/callbacks/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/callbacks/base.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/callbacks/checkpointing.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/callbacks/monitoring.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/callbacks/validation.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/13b_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/7b_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/base_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/kaggle_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/master_complete.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/master_full.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/master_kaggle.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/master_kaggle_complete.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/parallel_config.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/syon_gemma_full_kaggle.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/syon_gemma_full_local.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/syon_gemma_kaggle.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/configs/syon_scratch_kaggle.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/core/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/core/distributed.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/core/gradient_accumulation.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/core/loss_functions.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/core/mixed_precision.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/core/optimization.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/core/trainer.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/data_pipeline/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/data_pipeline/augmentation.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/data_pipeline/collate.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/data_pipeline/dataloader.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/data_pipeline/sampler.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/dataset/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/dataset/composition.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/dataset/curator.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/distillation.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/launch/multi_gpu_train.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/launch/single_gpu_train.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/losses/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/losses/contrastive.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/losses/security_aware.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/master_trainer.py', LF will be replaced by CRLF the next time Git touches it
+## main
+A  .gitignore
+A  ARQUITETURA.md
+A  LICENSE
+A  api/__init__.py
+A  api/auth/__init__.py
+A  api/auth/api_keys.py
+A  api/auth/jwt_handler.py
+A  api/configs/api_config.yaml
+A  api/configs/auth_config.yaml
+A  api/configs/rate_limit_config.yaml
+A  api/openapi/openapi.yaml
+A  api/rest/__init__.py
+A  api/rest/app.py
+A  api/rest/middleware/__init__.py
+A  api/rest/middleware/auth.py
+A  api/rest/middleware/error_handling.py
+A  api/rest/middleware/logging.py
+A  api/rest/middleware/rate_limiting.py
+A  api/rest/routes/__init__.py
+A  api/rest/routes/analysis.py
+A  api/rest/routes/chat.py
+A  api/rest/routes/completions.py
+A  api/rest/routes/health.py
+A  api/rest/routes/models.py
+A  api/rest/routes/security.py
+A  api/rest/utils.py
+A  api/websocket/__init__.py
+A  api/websocket/ws_handler.py
+A  config/__init__.py
+A  config/constants.py
+A  config/data_configs/data_processing.yaml
+A  config/data_configs/sampling_strategy.yaml
+A  config/environments/development.yaml
+A  config/environments/kaggle.yaml
+A  config/environments/production.yaml
+A  config/environments/staging.yaml
+A  config/inference_configs/low_latency.yaml
+A  config/inference_configs/realtime_inference.yaml
+A  config/logging/logging_config.yaml
+A  config/model_configs/13b_model_config.yaml
+A  config/model_configs/70b_model_config.yaml
+A  config/model_configs/7b_model_config.yaml
+A  config/model_configs/base_model_config.yaml
+A  config/model_configs/syon3.yaml
+A  config/secrets/.env.example
+A  config/secrets/__init__.py
+A  config/secrets/secrets_manager.py
+A  config/settings.py
+A  config/training_configs/default_training.yaml
+A  config/training_configs/fast_training.yaml
+A  configs/dataset/composition.yaml
+A  configs/inference/default.yaml
+A  configs/model/syon-13b.yaml
+A  configs/model/syon-70b.yaml
+A  configs/model/syon-7b.yaml
+A  configs/training/parallel_sft.yaml
+A  data/config/data_pipeline_config.yaml
+A  data/config/data_splits.json
+A  data/config/dataset_manifest.json
+A  data/config/sampling_weights.json
+A  data/curriculum/build_manifest.json
+A  data/curriculum/master_curriculum.yaml
+A  data/validation/data_quality_rules.yaml
+A  data/validation/schema_definitions.json
+A  docker/.dockerignore
+A  docker/Dockerfile
+A  docker/Dockerfile.api
+A  docker/Dockerfile.inference
+A  docker/Dockerfile.training
+A  docker/docker-compose.yaml
+A  docker/docker-compose.yml
+A  docker/entrypoint.sh
+A  docker/healthcheck.sh
+A  eval/__init__.py
+A  eval/benchmarks/__init__.py
+A  eval/benchmarks/code2seq.py
+A  eval/benchmarks/cwe.py
+A  eval/benchmarks/humaneval.py
+A  eval/benchmarks/mbpp.py
+A  eval/benchmarks/owasp.py
+A  eval/metrics/latency.py
+A  eval/runner.py
+A  evaluation/__init__.py
+A  evaluation/benchmarks/__init__.py
+A  evaluation/benchmarks/benchmark_runner.py
+A  evaluation/benchmarks/code_benchmarks/__init__.py
+A  evaluation/benchmarks/code_benchmarks/humaneval.py
+A  evaluation/benchmarks/code_benchmarks/mbpp.py
+A  evaluation/benchmarks/security_benchmarks/__init__.py
+A  evaluation/benchmarks/security_benchmarks/cwe_detection.py
+A  evaluation/benchmarks/security_benchmarks/vulnerability_analysis.py
+A  evaluation/datasets/humaneval/problems.json
+A  evaluation/metrics/__init__.py
+A  evaluation/metrics/code_metrics.py
+A  evaluation/metrics/language_metrics.py
+A  evaluation/metrics/security_metrics.py
+A  evaluation/security_tests/__init__.py
+A  evaluation/security_tests/adversarial/__init__.py
+A  evaluation/security_tests/adversarial/prompt_injection.py
+A  experiments/experiment_tracker.json
+A  inference/__init__.py
+A  inference/configs/inference_config.yaml
+A  inference/configs/server_config.yaml
+A  inference/core/__init__.py
+A  inference/core/generation.py
+A  inference/core/inference_engine.py
+A  inference/core/model_loader.py
+A  inference/core/post_processing.py
+A  inference/core/tokenization.py
+A  inference/examples/basic_inference.py
+A  inference/examples/security_analysis.py
+A  inference/hardware/__init__.py
+A  inference/hardware/cpu.py
+A  inference/hardware/gpu.py
+A  inference/monitoring/__init__.py
+A  inference/monitoring/health_check.py
+A  inference/monitoring/metrics.py
+A  infewarning: in the working copy of 'training/optimizer.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/parallel/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/parallel/data_parallel.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/parallel/utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/parallel_trainer.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/pretrain.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'training/utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/code_utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/data_utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/device_utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/exception_utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/file_utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/logging_utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/memory_utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/security_utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/text_utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/time_utils.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'utils/validation_utils.py', LF will be replaced by CRLF the next time Git touches it
+rence/optimization/__init__.py
+A  inference/optimization/attention_optimization.py
+A  inference/optimization/caching.py
+A  inference/optimization/quantization.py
+A  inference/servers/__init__.py
+A  inference/servers/fastapi_server.py
+A  inference/servers/flask_server.py
+A  inference/servers/grpc_server.py
+A  k8s/syon-configmap.yaml
+A  k8s/syon-deployment.yaml
+A  k8s/syon-secrets.yaml.example
+A  k8s/syon-service.yaml
+A  kl/config.json
+A  kl/syon_model.json
+A  kl/tokenizer.json
+A  kubernetes/api/deployment.yaml
+A  kubernetes/api/hpa.yaml
+A  kubernetes/api/ingress.yaml
+A  kubernetes/api/service.yaml
+A  kubernetes/configmap.yaml
+A  kubernetes/inference/deployment.yaml
+A  kubernetes/inference/pvc.yaml
+A  kubernetes/namespace.yaml
+A  kubernetes/secrets.yaml.example
+A  kubernetes/training/job.yaml
+A  notebooks/kaggle_gemma_full.ipynb
+A  notebooks/kaggle_master_complete.ipynb
+A  notebooks/kaggle_train_syon.ipynb
+A  pyproject.toml
+A  requirements.txt
+A  scripts/data/__init__.py
+A  scripts/data/build_gemma_sft_dataset.py
+A  scripts/data/build_master_curriculum.py
+A  scripts/data/curriculum_entries.py
+A  scripts/data/curriculum_generator.py
+A  scripts/data/import_conversation_datasets.py
+A  scripts/data/import_external_datasets.py
+A  scripts/data/process_pipeline.py
+A  scripts/data/train_syon_tokenizer.py
+A  scripts/deployment/deploy_kubernetes.sh
+A  scripts/development/run_tests.sh
+A  scripts/development/scaffold_arquitetura.py
+A  scripts/download_model.ps1
+A  scripts/download_model.sh
+A  scripts/kaggle/kaggle_gemma_full_train.py
+A  scripts/kaggle/kaggle_gemma_train.py
+A  scripts/kaggle/kaggle_master_train.py
+A  scripts/kaggle/kaggle_train.py
+A  scripts/kaggle/load_syon3_inference.py
+A  scripts/kaggle/package_kaggle_data.py
+A  scripts/kaggle/package_kaggle_model.py
+A  scripts/kaggle/prepare_dataset.py
+A  scripts/kaggle/run_complete_kaggle.py
+A  scripts/kaggle/run_gemma_full_kaggle.py
+A  scripts/kaggle/run_scratch_kaggle.py
+A  scripts/kaggle/setup_project.py
+A  scripts/kaggle/upload_kaggle_model.py
+A  scripts/run_api.ps1
+A  scripts/run_api.sh
+A  scripts/run_eval.ps1
+A  scripts/run_eval.sh
+A  scripts/run_training.ps1
+A  scripts/run_training.sh
+A  scripts/setup/download_models.sh
+A  scripts/setup/install_dependencies.sh
+A  scripts/training/export_model.py
+A  scripts/training/run_complete.ps1
+A  scripts/training/run_complete.sh
+A  scripts/training/run_gemma_full.ps1
+A  scripts/training/run_master_training.ps1
+A  scripts/training/run_master_training.sh
+A  security/__init__.py
+A  security/access_control/__init__.py
+A  security/access_control/audit_log.py
+A  security/access_control/rbac.py
+A  security/compliance/__init__.py
+A  security/compliance/gdpr.py
+A  security/compliance/hipaa.py
+A  security/input_validation/__init__.py
+A  security/input_validation/injection_detection.py
+A  security/input_validation/sanitizer.py
+A  security/output_filtering/__init__.py
+A  security/output_filtering/content_filter.py
+A  security/output_filtering/hallucination_detection.py
+A  security/policy/security_policy.yaml
+A  security/vulnerability_scanning/__init__.py
+A  security/vulnerability_scanning/sast.py
+A  src/syon/__init__.py
+A  src/syon/api/__init__.py
+A  src/syon/api/dependencies.py
+A  src/syon/api/main.py
+A  src/syon/api/middleware/__init__.py
+A  src/syon/api/middleware/auth.py
+A  src/syon/api/routes/__init__.py
+A  src/syon/api/routes/chat.py
+A  src/syon/api/routes/completions.py
+A  src/syon/api/routes/security.py
+A  src/syon/api/schemas.py
+A  src/syon/chat.py
+A  src/syon/code/__init__.py
+A  src/syon/code/generator.py
+A  src/syon/code/languages.py
+A  src/syon/config.py
+A  src/syon/exceptions.py
+A  src/syon/inference/__init__.py
+A  src/syon/inference/engine.py
+A  src/syon/model.py
+A  src/syon/py.typed
+A  src/syon/security/__init__.py
+A  src/syon/security/analyzer.py
+A  src/syon/security/guardrails.py
+A  tests/conftest.py
+A  tests/coverage.yaml
+A  tests/fixtures/test_config.yaml
+A  tests/integration/test_api_v2.py
+A  tests/test_api.py
+A  tests/test_functional.py
+A  tests/test_guardrails.py
+A  tests/test_languages.py
+A  tests/test_reliability.py
+A  tests/test_security.py
+A  tests/test_security_analyzer.py
+A  tests/test_syon3.py
+A  tests/test_training_losses.py
+A  tests/unit/test_config_settings.py
+A  training/__init__.py
+A  training/callbacks/__init__.py
+A  training/callbacks/base.py
+A  training/callbacks/checkpointing.py
+A  training/callbacks/monitoring.py
+A  training/callbacks/validation.py
+A  training/configs/13b_config.yaml
+A  training/configs/7b_config.yaml
+A  training/configs/base_config.yaml
+A  training/configs/kaggle_config.yaml
+A  training/configs/master_complete.yaml
+A  training/configs/master_full.yaml
+A  training/configs/master_kaggle.yaml
+A  training/configs/master_kaggle_complete.yaml
+A  training/configs/parallel_config.yaml
+A  training/configs/syon_gemma_full_kaggle.yaml
+A  training/configs/syon_gemma_full_local.yaml
+A  training/configs/syon_gemma_kaggle.yaml
+A  training/configs/syon_scratch_kaggle.yaml
+A  training/core/__init__.py
+A  training/core/distributed.py
+A  training/core/gradient_accumulation.py
+A  training/core/loss_functions.py
+A  training/core/mixed_precision.py
+A  training/core/optimization.py
+A  training/core/trainer.py
+A  training/data_pipeline/__init__.py
+A  training/data_pipeline/augmentation.py
+A  training/data_pipeline/collate.py
+A  training/data_pipeline/dataloader.py
+A  training/data_pipeline/sampler.py
+A  training/dataset/__init__.py
+A  training/dataset/composition.py
+A  training/dataset/curator.py
+A  training/distillation.py
+A  training/launch/multi_gpu_train.sh
+A  training/launch/single_gpu_train.sh
+A  training/losses/__init__.py
+A  training/losses/contrastive.py
+A  training/losses/security_aware.py
+A  training/master_trainer.py
+A  training/optimizer.py
+A  training/parallel/__init__.py
+A  training/parallel/data_parallel.py
+A  training/parallel/utils.py
+A  training/parallel_trainer.py
+A  training/pretrain.py
+A  training/utils.py
+A  utils/__init__.py
+A  utils/code_utils.py
+A  utils/data_utils.py
+A  utils/device_utils.py
+A  utils/exception_utils.py
+A  utils/file_utils.py
+A  utils/logging_utils.py
+A  utils/memory_utils.py
+A  utils/security_utils.py
+A  utils/text_utils.py
+A  utils/time_utils.py
+A  utils/validation_utils.py

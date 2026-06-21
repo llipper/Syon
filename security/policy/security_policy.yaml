@@ -1,0 +1,53 @@
+policy:
+  name: syon-default-security-policy
+  version: "1.0"
+
+input_validation:
+  max_prompt_length: 32000
+  block_prompt_injection: true
+  block_jailbreak_attempts: true
+  sanitize_pii: true
+
+output_filtering:
+  block_malicious_code: true
+  block_exploit_content: true
+  redact_pii: true
+  hallucination_check: false
+
+refusal_topics:
+  - malware executável
+  - exploit zero-day comprovado
+  - bypass de autenticação moderna
+  - contorno de proteções drm
+
+access_control:
+  default_role: guest
+  require_authentication: false
+  roles:
+    admin:
+      - inference
+      - security_analysis
+      - training
+      - admin
+    developer:
+      - inference
+      - security_analysis
+      - code_generation
+    analyst:
+      - security_analysis
+      - inference
+    viewer:
+      - inference
+
+compliance:
+  gdpr:
+    require_consent_for_pii: true
+    enable_right_to_be_forgotten: true
+  hipaa:
+    protect_phi: true
+    require_audit_logging: true
+
+audit:
+  log_all_access: true
+  log_authorization_failures: true
+  retention_days: 90

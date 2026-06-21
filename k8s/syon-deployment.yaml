@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syon-api
+  labels:
+    app: syon
+    component: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: syon
+      component: api
+  template:
+    metadata:
+      labels:
+        app: syon
+        component: api
+    spec:
+      containers:
+        - name: syon
+          image: syon:7b-latest
+          ports:
+            - containerPort: 8000
+          args:
+            - "--model"
+            - "/models/syon-7b.gguf"
+            - "--api-port"
+            - "8000"
+          env:
+            - name: SYON_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: syon-secrets
+                  key: api-key
+            - name: SYON_MODELS_DIR
+              value: /models
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+              memory: 12Gi
+            requests:
+              memory: 8Gi
+              cpu: "2"
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: syon-models-pvc

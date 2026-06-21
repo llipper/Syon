@@ -1,0 +1,18 @@
+environment: development
+debug: true
+log_level: DEBUG
+api_workers: 2
+reload: true
+cors_origins:
+  - http://localhost:3000
+  - http://127.0.0.1:3000
+inference:
+  device: auto
+  batch_size: 4
+training:
+  batch_size: 8
+  gradient_accumulation: 2
+  checkpoint_interval: 500
+monitoring:
+  enable_prometheus: false
+  enable_wandb: true

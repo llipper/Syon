@@ -1,0 +1,15 @@
+jwt:
+  algorithm: HS256
+  expire_minutes: 60
+  # secret_key definido via SYON_JWT_SECRET em produção
+
+api_keys:
+  - name: development
+    key: ""  # usar SYON_API_KEY via env
+    scopes:
+      - read
+      - write
+
+oauth:
+  enabled: false
+  providers: []

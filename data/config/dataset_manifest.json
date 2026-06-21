@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "datasets": {
+    "programming": {
+      "weight": 0.40,
+      "sources": ["github", "stackoverflow", "documentation", "tutorials"]
+    },
+    "security": {
+      "weight": 0.35,
+      "sources": ["cve_nvd", "cwe_data", "owasp", "exploits", "research_papers", "threat_intelligence", "compliance"]
+    },
+    "complementary": {
+      "weight": 0.15,
+      "sources": ["cryptography", "networks", "operating_systems", "architecture", "devops"]
+    },
+    "training_quality": {
+      "weight": 0.10,
+      "sources": ["synthetic", "anonymized_cases", "human_validation", "security_feedback"]
+    }
+  }
+}

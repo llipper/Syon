@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "description": "HumanEval sample problems for Syon evaluation",
+  "problems": [
+    {
+      "task_id": "HumanEval/0",
+      "entry_point": "is_palindrome",
+      "prompt": "def is_palindrome(s: str) -> bool:\n    \"\"\"Check if string is palindrome.\"\"\"\n",
+      "test": "assert is_palindrome('aba') == True\nassert is_palindrome('abc') == False"
+    },
+    {
+      "task_id": "HumanEval/1",
+      "entry_point": "sum_list",
+      "prompt": "def sum_list(nums: list[int]) -> int:\n    \"\"\"Return sum of integers.\"\"\"\n",
+      "test": "assert sum_list([1, 2, 3]) == 6\nassert sum_list([]) == 0"
+    },
+    {
+      "task_id": "HumanEval/2",
+      "entry_point": "has_close_elements",
+      "prompt": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\"Check if any two numbers are closer than threshold.\"\"\"\n",
+      "test": "assert has_close_elements([1.0, 2.0, 3.0], 0.5) == False"
+    }
+  ]
+}

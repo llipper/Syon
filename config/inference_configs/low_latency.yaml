@@ -1,0 +1,30 @@
+inference:
+  mode: low_latency
+  default_model: syon-7b
+  device: cuda
+  batch_size: 1
+  temperature: 0.3
+  top_p: 0.9
+  max_tokens: 512
+  stream: true
+  use_kv_cache: true
+  use_flash_attention: true
+  n_gpu_layers: -1
+latency_targets_ms:
+  first_token: 25
+  inference_256_tokens: 60
+  inference_512_tokens: 100
+  security_analysis_1kb: 80
+server:
+  host: 0.0.0.0
+  port: 8000
+  workers: 4
+  timeout_seconds: 60
+  max_concurrent_requests: 64
+optimization:
+  use_quantization: true
+  quantization_bits: 4
+  use_cache: true
+  cache_ttl_seconds: 600
+  compile_model: true
+  pinned_memory: true

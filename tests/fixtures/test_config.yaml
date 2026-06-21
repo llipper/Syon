@@ -1,0 +1,4 @@
+test:
+  model: syon-7b
+  mock_inference: true
+  api_key: test-key

@@ -1,0 +1,20 @@
+name: syon-7b
+version: "1.0.0-beta"
+architecture:
+  type: transformer
+  parameters_billions: 7
+  context_window: 8192
+  attention: flash_attention_v2
+  position_encoding: rope
+  quantization: fp16
+training:
+  method: parallel_supervised_sft
+  optimizer: adamw_warm_restarts
+  loss_functions:
+    - cross_entropy
+    - security_aware
+distribution:
+  gguf: syon-7b.gguf
+  gguf_size_gb: 4.5
+  fp16: syon-7b-fp16.bin
+  fp16_size_gb: 13

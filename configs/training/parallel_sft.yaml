@@ -1,0 +1,31 @@
+training:
+  method: parallel_supervised_sft
+  algorithm: causal_language_modeling
+  instruction_following: true
+  fusion:
+    - knowledge_distillation
+    - contrastive_learning
+  auxiliary_model: parallel_specialized_ia
+  optimizer:
+    name: adamw
+    warm_restarts: true
+    learning_rate: 2.0e-5
+    weight_decay: 0.01
+  precision: mixed_fp16
+  batch_size: 32
+  gradient_accumulation: 4
+  max_steps: 100000
+  checkpoint_interval: 1000
+  validation_interval: 500
+loss:
+  primary: cross_entropy
+  auxiliary:
+    - security_aware
+    - contrastive
+  security_aware_weight: 0.15
+  contrastive_weight: 0.1
+dataset:
+  config: configs/dataset/composition.yaml
+  data_cutoff: "[DATA_CUTOFF]"
+  tokens_trained: "[X]"
+  unique_samples: "[X]"

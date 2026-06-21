@@ -1,0 +1,20 @@
+# Configuração para modelo Syon 7B
+extends: base_config.yaml
+
+model_params:
+  hidden_size: 4096
+  num_layers: 32
+  num_heads: 32
+  vocab_size: 32000
+  max_seq_length: 4096
+  num_parameters: 7_000_000_000
+
+training_params:
+  batch_size: 4
+  learning_rate: 2.0e-5
+  gradient_accumulation_steps: 8
+  max_steps: 200000
+
+data_params:
+  train_data_path: data/processed/programming/train/code_samples.jsonl
+  val_data_path: data/processed/programming/validation/code_samples.jsonl

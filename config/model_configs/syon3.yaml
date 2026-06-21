@@ -1,0 +1,28 @@
+name: syon-3
+version: "3.0.0-beta"
+description: Syon 3 — LLM proprietário treinado do zero
+architecture:
+  vocab_size: 8192
+  hidden_size: 384
+  num_layers: 6
+  num_heads: 6
+  intermediate_size: 1536
+  max_seq_length: 512
+  rope_theta: 10000.0
+  dropout: 0.1
+  tie_word_embeddings: true
+  model_type: syon_3
+training:
+  from_scratch: true
+  learning_rate: 3.0e-4
+  warmup_steps: 100
+  weight_decay: 0.01
+tokenizer:
+  type: syon_bpe
+  vocab_size: 8192
+  special_tokens:
+    - "<|system|>"
+    - "<|user|>"
+    - "<|assistant|>"
+    - "<|code|>"
+    - "<|security|>"

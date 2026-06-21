@@ -1,0 +1,43 @@
+services:
+  syon-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.api
+    image: syon:api-latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../models:/models
+    environment:
+      - SYON_API_KEY=${SYON_API_KEY:-}
+      - SYON_MODELS_DIR=/models/pretrained
+
+  syon-inference:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.inference
+    image: syon:inference-latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - ../models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    profiles: ["inference"]
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    profiles: ["prod"]
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    profiles: ["monitoring"]

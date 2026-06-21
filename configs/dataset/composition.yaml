@@ -1,0 +1,39 @@
+composition:
+  programming:
+    weight: 0.40
+    sources:
+      - github_repositories
+      - stack_overflow_qa
+      - official_documentation
+      - public_domain_books
+      - educational_course_code
+  cybersecurity:
+    weight: 0.35
+    sources:
+      - cve_cwe_cvss_documents
+      - security_research_papers
+      - vulnerability_reports
+      - owasp_top_10
+      - compliance_manuals  # GDPR, HIPAA, ISO27001
+      - sanitized_attack_logs
+      - digital_forensics
+  complementary:
+    weight: 0.15
+    sources:
+      - cryptography_mathematics
+      - computer_networks
+      - operating_systems
+      - software_architecture
+      - devops_cloud
+  training_quality:
+    weight: 0.10
+    sources:
+      - synthetic_ia_generated
+      - anonymized_real_cases
+      - human_specialist_validation
+      - security_feedback
+volume:
+  tokens_trained: "[X]"
+  unique_samples: "[X]"
+  code_languages: 15
+  security_examples: 500000

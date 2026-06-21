@@ -1,0 +1,20 @@
+environment: staging
+debug: false
+log_level: INFO
+api_workers: 4
+reload: false
+cors_origins:
+  - https://staging.syon.ai
+inference:
+  device: cuda
+  batch_size: 8
+training:
+  batch_size: 16
+  gradient_accumulation: 4
+  checkpoint_interval: 1000
+monitoring:
+  enable_prometheus: true
+  enable_wandb: true
+security:
+  enable_input_sanitization: true
+  rate_limit_per_minute: 120

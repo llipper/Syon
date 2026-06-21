@@ -1,0 +1,25 @@
+inference:
+  default_model: syon-7b
+  model_path: models/syon-7b.gguf
+  device: auto
+  batch_size: 8
+  max_tokens: 2048
+  temperature: 0.7
+  top_p: 0.95
+  n_ctx: 8192
+  n_gpu_layers: -1
+
+optimization:
+  use_quantization: false
+  quantization_bits: 4
+  use_kv_cache: true
+  use_flash_attention: true
+
+hardware:
+  prefer_gpu: true
+  cpu_threads: null
+  gpu_memory_fraction: 0.9
+
+monitoring:
+  log_metrics: true
+  health_check_interval_seconds: 30

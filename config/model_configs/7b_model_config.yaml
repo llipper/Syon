@@ -1,0 +1,20 @@
+name: syon-7b
+version: "1.0.0-beta"
+extends: base_model_config.yaml
+architecture:
+  parameters_billions: 7
+  hidden_size: 4096
+  num_hidden_layers: 32
+  num_attention_heads: 32
+  context_window: 8192
+  quantization: fp16
+training:
+  learning_rate: 2.0e-4
+  warmup_steps: 2000
+  max_seq_length: 4096
+  batch_size: 32
+distribution:
+  gguf: syon-7b.gguf
+  gguf_size_gb: 4.5
+  fp16: syon-7b-fp16.bin
+  fp16_size_gb: 13

@@ -1,0 +1,45 @@
+sampling:
+  strategy: weighted_stratified
+  seed: 42
+  batch_size: 32
+domain_weights:
+  programming: 0.40
+  cybersecurity: 0.35
+  complementary: 0.15
+  training_quality: 0.10
+language_weights:
+  python: 0.22
+  javascript: 0.12
+  typescript: 0.08
+  go: 0.07
+  rust: 0.07
+  cpp: 0.06
+  java: 0.06
+  csharp: 0.05
+  swift: 0.04
+  kotlin: 0.04
+  ruby: 0.04
+  php: 0.04
+  bash: 0.04
+  sql: 0.03
+  assembly: 0.02
+  solidity: 0.06
+security_topic_weights:
+  vulnerability_analysis: 0.25
+  secure_coding: 0.20
+  compliance: 0.15
+  threat_intelligence: 0.15
+  cryptography: 0.15
+  incident_response: 0.10
+constraints:
+  min_samples_per_language: 1000
+  max_samples_per_repo: 500
+  balance_by_difficulty: true
+  oversample_rare_cwe: true
+augmentation:
+  enabled: true
+  ratio: 0.1
+  methods:
+    - variable_renaming
+    - synthetic_code_generation
+    - adversarial_examples
