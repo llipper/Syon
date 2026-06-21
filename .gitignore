@@ -11,11 +11,14 @@ build/
 venv/
 env/
 
-# Model weights
+# Model weights (código em models/ VAI para o GitHub)
 *.gguf
 *.bin
 *.safetensors
-models/
+kl/
+models/pretrained/
+models/quantized/
+models/checkpoints/
 checkpoints/
 
 # Training artifacts

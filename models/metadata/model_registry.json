@@ -1,0 +1,23 @@
+{
+  "syon-7b": {
+    "version": "1.0.0-beta",
+    "parameters_billions": 7,
+    "context_window": 8192,
+    "gguf_q4": "models/quantized/syon-7b-gguf/q4_0/syon-7b-q4_0.gguf",
+    "size_gb": 4.5
+  },
+  "syon-13b": {
+    "version": "1.0.0-beta",
+    "parameters_billions": 13,
+    "context_window": 8192,
+    "gguf_q4": "models/quantized/syon-13b-gguf/syon-13b.gguf",
+    "size_gb": 8.2
+  },
+  "syon-70b": {
+    "version": "1.0.0-beta",
+    "parameters_billions": 70,
+    "context_window": 8192,
+    "gguf_q4": "models/quantized/syon-70b-gguf/syon-70b.gguf",
+    "size_gb": 40
+  }
+}

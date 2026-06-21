@@ -14,9 +14,9 @@ from pathlib import Path
 
 
 def is_full_project(path: Path) -> bool:
-    return (path / "models" / "architecture" / "syon3.py").exists() and (
-        path / "training" / "hf" / "syon3_hf_trainer.py"
-    ).exists()
+    has_trainer = (path / "training" / "hf" / "syon3_hf_trainer.py").exists()
+    has_arch = (path / "models" / "architecture" / "syon3.py").exists()
+    return has_trainer and has_arch
 
 
 def _path_kind(p: Path) -> str:

@@ -1,0 +1,1 @@
+"""Modelos Syon — arquitetura e tokenização próprias."""
