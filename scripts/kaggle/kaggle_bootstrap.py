@@ -1,8 +1,7 @@
 """
-Bootstrap Syon no Kaggle — código + pesos Syon 3 + dados de conversação.
+Bootstrap Syon 3 no Kaggle — código completo + kl/ (pesos + tokenizer).
 
 Uso:
-    python scripts/kaggle/kaggle_bootstrap.py
     python scripts/kaggle/kaggle_bootstrap.py --project /kaggle/working/syon
 """
 
@@ -11,49 +10,65 @@ from __future__ import annotations
 import argparse
 import json
 import shutil
-import sys
 from pathlib import Path
 
 
-def is_project_root(path: Path) -> bool:
-    return (path / "training" / "hf" / "syon3_hf_trainer.py").exists() or (
-        path / "models" / "architecture" / "syon3.py"
+def is_full_project(path: Path) -> bool:
+    return (path / "models" / "architecture" / "syon3.py").exists() and (
+        path / "training" / "hf" / "syon3_hf_trainer.py"
     ).exists()
+
+
+def _path_kind(p: Path) -> str:
+    s = str(p).replace("\\", "/")
+    if "/kaggle/input/datasets/" in s:
+        return "dataset"
+    if "/kaggle/input/models/" in s:
+        return "model"
+    return "other"
 
 
 def find_project(input_dir: Path) -> Path | None:
     if not input_dir.exists():
         return None
-    for marker in input_dir.rglob("syon3_hf_trainer.py"):
-        if marker.parent.name == "hf" and marker.parent.parent.name == "training":
-            root = marker.parent.parent.parent
-            if is_project_root(root):
-                return root
-    for marker in input_dir.rglob("syon3.py"):
-        if marker.parent.name == "architecture":
-            root = marker.parent.parent.parent
-            if is_project_root(root):
-                return root
-    return None
 
-
-def find_checkpoint(input_dir: Path) -> Path | None:
     candidates: list[Path] = []
-    for weights in input_dir.rglob("pytorch_model.bin"):
-        parent = weights.parent
-        if (parent / "config.json").exists() and (parent / "tokenizer.json").exists():
-            candidates.append(parent)
+    for marker in input_dir.rglob("syon3_hf_trainer.py"):
+        if marker.parent.name != "hf":
+            continue
+        root = marker.parent.parent.parent
+        if is_full_project(root):
+            candidates.append(root)
 
     if not candidates:
         return None
 
-    def version_key(p: Path) -> int:
-        for part in reversed(p.parts):
-            if part.isdigit():
-                return int(part)
-        return 0
+    def rank(p: Path) -> tuple[int, int, int]:
+        kind = _path_kind(p)
+        kind_score = {"dataset": 3, "other": 2, "model": 1}[kind]
+        has_kl = 1 if (p / "kl" / "tokenizer.json").exists() else 0
+        return (kind_score, has_kl, -len(str(p)))
 
-    return max(candidates, key=version_key)
+    return max(candidates, key=rank)
+
+
+def find_kl_source(input_dir: Path, project: Path) -> Path | None:
+    searches = [project, input_dir]
+
+    for base in searches:
+        direct = base / "kl"
+        if direct.is_dir() and (direct / "tokenizer.json").exists():
+            return direct
+
+    for base in searches:
+        for tok in base.rglob("tokenizer.json"):
+            parent = tok.parent
+            if (parent / "config.json").exists() and (
+                (parent / "pytorch_model.bin").exists() or parent.name == "kl"
+            ):
+                return parent
+
+    return None
 
 
 def copy_tree(src: Path, dest: Path) -> None:
@@ -67,16 +82,22 @@ def copy_tree(src: Path, dest: Path) -> None:
             "__pycache__",
             "*.pyc",
             ".pytest_cache",
-            "node_modules",
             "UltrachatBR",
             "dataset-v3-bucket",
+            "terminals",
         ),
     )
 
 
-def copy_checkpoint(src: Path, dest: Path) -> None:
+def copy_kl(src: Path, dest: Path) -> None:
     dest.mkdir(parents=True, exist_ok=True)
-    for name in ("pytorch_model.bin", "config.json", "tokenizer.json", "syon_model.json"):
+    for name in (
+        "pytorch_model.bin",
+        "config.json",
+        "tokenizer.json",
+        "syon_model.json",
+        "model.safetensors",
+    ):
         f = src / name
         if f.exists():
             shutil.copy2(f, dest / name)
@@ -84,21 +105,7 @@ def copy_checkpoint(src: Path, dest: Path) -> None:
 
 def find_conversation_files(input_dir: Path) -> list[Path]:
     names = {"instruct_aira_pt.jsonl", "ultrachat_br.jsonl"}
-    found: list[Path] = []
-    for path in input_dir.rglob("*.jsonl"):
-        if path.name in names:
-            found.append(path)
-    return found
-
-
-def copy_conversation_data(input_dir: Path, dest_dir: Path) -> int:
-    dest_dir.mkdir(parents=True, exist_ok=True)
-    copied = 0
-    for src in find_conversation_files(input_dir):
-        shutil.copy2(src, dest_dir / src.name)
-        copied += 1
-        print(f"[bootstrap] Conversação: {src.name}")
-    return copied
+    return [p for p in input_dir.rglob("*.jsonl") if p.name in names]
 
 
 def bootstrap(project: Path, input_dir: Path) -> dict:
@@ -106,46 +113,60 @@ def bootstrap(project: Path, input_dir: Path) -> dict:
 
     src = find_project(input_dir)
     if src is None:
-        if is_project_root(Path.cwd()):
-            src = Path.cwd()
-            print(f"[bootstrap] Usando código atual: {src}")
-        else:
-            raise FileNotFoundError(
-                "Código Syon não encontrado em /kaggle/input.\n"
-                "Add Data → Dataset com código Syon 3 (ex: regyfelipe/syon-3-code)"
-            )
-    else:
-        print(f"[bootstrap] Código: {src} → {project}")
-        copy_tree(src, project)
-
-    ckpt = find_checkpoint(input_dir)
-    kl_dir = project / "kl"
-    if ckpt:
-        print(f"[bootstrap] Pesos Syon 3: {ckpt} → {kl_dir}")
-        copy_checkpoint(ckpt, kl_dir)
-        report["checkpoint"] = str(ckpt)
-    elif (project / "kl" / "pytorch_model.bin").exists():
-        print(f"[bootstrap] Pesos já em {kl_dir}")
-    else:
         raise FileNotFoundError(
-            "Pesos Syon 3 não encontrados.\n"
-            "Add Data → Model regyfelipe/syon-3 (pesos) ou pasta kl/ com pytorch_model.bin"
+            "Código Syon 3 completo não encontrado.\n\n"
+            "Opção A — Add Data → Dataset com o repo GitHub (pasta com models/ + training/)\n"
+            "Opção B — Célula git clone:\n"
+            "  !git clone https://github.com/llipper/Syon.git /kaggle/working/syon\n\n"
+            "NÃO use só o Kaggle Model como código — ele pode não ter a pasta models/."
         )
 
+    print(f"[bootstrap] Código ({_path_kind(src)}): {src}")
+    if src.resolve() != project.resolve():
+        print(f"[bootstrap] Copiando → {project}")
+        copy_tree(src, project)
+    else:
+        print(f"[bootstrap] Projeto já em {project}")
+
+    kl_dir = project / "kl"
+    kl_src = find_kl_source(input_dir, project)
+    if kl_src:
+        print(f"[bootstrap] kl/: {kl_src} → {kl_dir}")
+        copy_kl(kl_src, kl_dir)
+        report["kl_source"] = str(kl_src)
+    elif (kl_dir / "tokenizer.json").exists():
+        print(f"[bootstrap] kl/ já presente em {kl_dir}")
+    else:
+        raise FileNotFoundError(
+            "tokenizer.json não encontrado.\n"
+            "Add Data → Model regyfelipe/syon-3-v1 (ou pasta kl/ com tokenizer + pesos)"
+        )
+
+    has_weights = (kl_dir / "pytorch_model.bin").exists()
+    report["has_weights"] = has_weights
+    if not has_weights:
+        print("[bootstrap] AVISO: sem pytorch_model.bin — treino inicia pesos aleatórios")
+
     conv_dir = project / "data" / "raw" / "conversation"
-    n = copy_conversation_data(input_dir, conv_dir)
-    report["conversation_files"] = n
-    if n == 0:
-        print("[bootstrap] Sem dados locais — treino usará Hugging Face Hub (Internet ON)")
+    conv_dir.mkdir(parents=True, exist_ok=True)
+    copied = 0
+    for f in find_conversation_files(input_dir):
+        shutil.copy2(f, conv_dir / f.name)
+        copied += 1
+        print(f"[bootstrap] Conversação: {f.name}")
+    report["conversation_files"] = copied
+    if copied == 0:
+        print("[bootstrap] Sem conversação local — usa API HF datasets (Internet ON)")
 
     report["kl"] = str(kl_dir)
-    report["conversation_dir"] = str(conv_dir)
-    (project / "kaggle_bootstrap_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    (project / "kaggle_bootstrap_report.json").write_text(
+        json.dumps(report, indent=2), encoding="utf-8"
+    )
     return report
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Bootstrap Syon no Kaggle")
+    parser = argparse.ArgumentParser(description="Bootstrap Syon 3 no Kaggle")
     parser.add_argument("--project", type=Path, default=Path("/kaggle/working/syon"))
     parser.add_argument("--input", type=Path, default=Path("/kaggle/input"))
     args = parser.parse_args()
